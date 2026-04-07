@@ -1,1409 +1,874 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light" dir="ltr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Water Day | بصمتك المائية & ظاهرة السيفون</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-  <style>
-    /* ─── TOKENS ─── */
-    :root {
-      --font-display: 'Instrument Serif', Georgia, serif;
-      --font-body: 'Plus Jakarta Sans', sans-serif;
-      --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
-      --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
-      --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
-      --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
-      --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
-      --text-2xl: clamp(2rem, 1.2rem + 2.5vw, 3.5rem);
-      --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem;
-      --space-4: 1rem; --space-5: 1.25rem; --space-6: 1.5rem;
-      --space-8: 2rem; --space-10: 2.5rem; --space-12: 3rem;
-      --space-16: 4rem; --space-20: 5rem;
-      --radius-sm: 0.375rem; --radius-md: 0.5rem;
-      --radius-lg: 0.75rem; --radius-xl: 1rem; --radius-full: 9999px;
-      --transition: 180ms cubic-bezier(0.16, 1, 0.3, 1);
-      /* Water-themed palette */
-      --color-bg: #f0f8ff;
-      --color-surface: #ffffff;
-      --color-surface-2: #e8f4fd;
-      --color-border: #b3d9f0;
-      --color-text: #0d2137;
-      --color-text-muted: #4a6b82;
-      --color-text-faint: #89adc0;
-      --color-primary: #0077b6;
-      --color-primary-hover: #005a8e;
-      --color-accent: #00b4d8;
-      --color-accent-2: #48cae4;
-      --color-siphon: #0096c7;
-      --color-footprint: #06a77d;
-      --color-footprint-hover: #048a68;
-      --color-water-deep: #023e8a;
-      --color-water-mid: #0096c7;
-      --color-water-light: #90e0ef;
-      --color-sand: #ffd166;
-      --shadow-sm: 0 1px 3px rgba(0,119,182,0.08);
-      --shadow-md: 0 4px 16px rgba(0,119,182,0.12);
-      --shadow-lg: 0 12px 40px rgba(0,119,182,0.18);
-    }
-    [data-theme="dark"] {
-      --color-bg: #041c2c;
-      --color-surface: #072540;
-      --color-surface-2: #0a2e50;
-      --color-border: #1a4a6b;
-      --color-text: #d0ecf8;
-      --color-text-muted: #7ab4cc;
-      --color-text-faint: #4a7a96;
-      --color-primary: #48cae4;
-      --color-primary-hover: #00b4d8;
-      --color-accent: #90e0ef;
-      --color-accent-2: #caf0f8;
-      --color-siphon: #48cae4;
-      --color-footprint: #06d6a0;
-      --color-footprint-hover: #05b889;
-      --color-water-deep: #023e8a;
-      --color-water-mid: #0096c7;
-      --color-water-light: #48cae4;
-      --color-sand: #ffd166;
-      --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
-      --shadow-md: 0 4px 16px rgba(0,0,0,0.4);
-      --shadow-lg: 0 12px 40px rgba(0,0,0,0.5);
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💧 Water Day</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
+:root{
+  --f:'Plus Jakarta Sans',sans-serif;
+  --blue:#0077b6;--blue2:#00b4d8;--blue3:#90e0ef;
+  --green:#06a77d;--green2:#06d6a0;
+  --ink:#0d2137;--ink2:#3d6b85;--ink3:#7ab4cc;
+  --bg:#edf6ff;--card:#fff;--border:#cde8f8;
+  --r:16px;--r2:24px;--shadow:0 4px 20px rgba(0,119,182,.12);
+  --t:200ms cubic-bezier(.16,1,.3,1);
+}
+[data-theme=dark]{
+  --bg:#041c2c;--card:#072540;--border:#1a4a6b;
+  --ink:#d0ecf8;--ink2:#7ab4cc;--ink3:#3a6b8a;
+  --shadow:0 4px 20px rgba(0,0,0,.4);
+}
+body{font-family:var(--f);background:var(--bg);color:var(--ink);min-height:100dvh;transition:background .3s,color .3s}
+button{cursor:pointer;border:none;font:inherit;color:inherit;background:none}
+img,svg{display:block;max-width:100%}
 
-    /* ─── BASE ─── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
-    body {
-      font-family: var(--font-body); font-size: var(--text-base);
-      color: var(--color-text); background: var(--color-bg);
-      min-height: 100dvh; line-height: 1.6;
-      transition: background var(--transition), color var(--transition);
-    }
-    img, svg { display: block; max-width: 100%; }
-    button { cursor: pointer; border: none; font: inherit; color: inherit; background: none; }
-    h1,h2,h3,h4 { text-wrap: balance; line-height: 1.2; }
-    p, li { text-wrap: pretty; }
+/* ── WATER BG ── */
+.waves{position:fixed;bottom:0;left:0;width:100%;height:120px;pointer-events:none;z-index:0;opacity:.35}
+.waves path{animation:wave 10s linear infinite}
+.waves path:nth-child(2){animation-delay:-4s;opacity:.6}
+@keyframes wave{0%{d:path("M0,60 C200,100 400,20 600,60 C800,100 1000,20 1200,60 L1200,120 L0,120Z")}
+50%{d:path("M0,80 C200,20 400,100 600,80 C800,20 1000,100 1200,80 L1200,120 L0,120Z")}
+100%{d:path("M0,60 C200,100 400,20 600,60 C800,100 1000,20 1200,60 L1200,120 L0,120Z")}}
 
-    /* ─── WATER ANIMATION BG ─── */
-    .water-bg {
-      position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none;
-    }
-    .water-bg::before {
-      content: '';
-      position: absolute; bottom: -20px; left: 0; right: 0; height: 180px;
-      background: linear-gradient(180deg, transparent 0%, rgba(0,119,182,0.06) 100%);
-      animation: swell 8s ease-in-out infinite;
-    }
-    .water-bg .wave {
-      position: absolute; bottom: 0; left: -100%; width: 300%;
-      height: 80px; opacity: 0.15;
-      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80'%3E%3Cpath fill='%230077b6' d='M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z'/%3E%3C/svg%3E") repeat-x;
-      animation: wave 12s linear infinite;
-    }
-    .water-bg .wave2 {
-      bottom: 10px; animation: wave 18s linear infinite reverse; opacity: 0.08;
-    }
-    @keyframes wave { to { transform: translateX(33.33%); } }
-    @keyframes swell { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+/* ── BANNER ── */
+.banner{background:linear-gradient(135deg,#023e8a,#0096c7);color:#fff;text-align:center;
+  padding:10px 16px;font-size:13px;font-weight:700;letter-spacing:.03em;position:relative;z-index:10}
 
-    /* ─── BUBBLES ─── */
-    .bubbles {
-      position: fixed; bottom: 0; width: 100%; pointer-events: none; z-index: 0;
-    }
-    .bubble {
-      position: absolute; bottom: 0; border-radius: 50%;
-      background: rgba(72,202,228,0.2); border: 1px solid rgba(72,202,228,0.35);
-      animation: rise linear infinite;
-    }
-    @keyframes rise { 0%{transform:translateY(0) scale(1);opacity:0.4} 100%{transform:translateY(-100vh) scale(1.6);opacity:0} }
+/* ── NAV ── */
+.nav{position:sticky;top:0;z-index:100;background:rgba(237,246,255,.9);backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);padding:10px 16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+[data-theme=dark] .nav{background:rgba(4,28,44,.9)}
+.nav-logo{font-size:20px;font-weight:900;color:var(--blue);flex:1}
+.nav-logo em{color:var(--green);font-style:normal}
+.tabs{display:flex;gap:6px}
+.tab{padding:8px 16px;border-radius:99px;font-size:13px;font-weight:700;
+  transition:all var(--t);color:var(--ink2);border:2px solid transparent}
+.tab[data-a=t]{background:var(--blue);color:#fff;border-color:var(--blue)}
+.tab:not([data-a=t]):hover{border-color:var(--border);background:var(--card)}
+.ctl{display:flex;gap:6px}
+.ic{width:36px;height:36px;border-radius:99px;display:flex;align-items:center;justify-content:center;
+  background:var(--card);border:1px solid var(--border);color:var(--ink2);font-size:13px;font-weight:800;
+  transition:all var(--t)}
+.ic:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
 
-    /* ─── NAV ─── */
-    .nav {
-      position: sticky; top: 0; z-index: 100;
-      background: rgba(240,248,255,0.85);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--color-border);
-      padding: var(--space-3) var(--space-6);
-      display: flex; align-items: center; gap: var(--space-4);
-      flex-wrap: wrap;
-    }
-    [data-theme="dark"] .nav { background: rgba(4,28,44,0.85); }
-    .nav-logo {
-      font-family: var(--font-display); font-size: var(--text-lg);
-      color: var(--color-primary); flex: 1; min-width: 0;
-      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-    }
-    .nav-logo span { color: var(--color-footprint); }
-    .nav-tabs { display: flex; gap: var(--space-2); }
-    .tab-btn {
-      padding: var(--space-2) var(--space-4); border-radius: var(--radius-full);
-      font-size: var(--text-sm); font-weight: 600;
-      transition: all var(--transition); border: 2px solid transparent;
-      color: var(--color-text-muted);
-    }
-    .tab-btn[data-active="true"] {
-      background: var(--color-primary); color: #fff;
-      border-color: var(--color-primary);
-    }
-    .tab-btn:not([data-active="true"]):hover {
-      border-color: var(--color-border);
-      background: var(--color-surface-2);
-      color: var(--color-text);
-    }
-    .nav-controls { display: flex; gap: var(--space-2); align-items: center; }
-    .icon-btn {
-      width: 36px; height: 36px; border-radius: var(--radius-full);
-      display: flex; align-items: center; justify-content: center;
-      background: var(--color-surface-2); border: 1px solid var(--color-border);
-      color: var(--color-text-muted); font-size: var(--text-sm);
-      transition: all var(--transition);
-    }
-    .icon-btn:hover { background: var(--color-primary); color: #fff; border-color: var(--color-primary); }
-    .lang-btn { padding: var(--space-2) var(--space-3); min-width: 60px; font-weight: 700; font-size: var(--text-xs); }
+/* ── SECTIONS ── */
+.sec{display:none;position:relative;z-index:1;padding:32px 16px 80px;max-width:860px;margin:0 auto}
+.sec.on{display:block;animation:fadeUp .35s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 
-    /* ─── HERO ─── */
-    .hero {
-      position: relative; z-index: 1;
-      padding: var(--space-16) var(--space-6) var(--space-10);
-      text-align: center; max-width: 800px; margin: 0 auto;
-    }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: var(--space-2);
-      background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
-      color: #fff; font-size: var(--text-xs); font-weight: 700;
-      padding: var(--space-1) var(--space-3); border-radius: var(--radius-full);
-      letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: var(--space-5);
-      animation: fadeInDown 0.6s ease;
-    }
-    .hero h1 {
-      font-family: var(--font-display); font-size: var(--text-2xl);
-      color: var(--color-water-deep); margin-bottom: var(--space-4);
-      animation: fadeInDown 0.7s ease;
-    }
-    [data-theme="dark"] .hero h1 { color: var(--color-accent-2); }
-    .hero p {
-      font-size: var(--text-base); color: var(--color-text-muted);
-      max-width: 560px; margin: 0 auto var(--space-8);
-      animation: fadeInDown 0.8s ease;
-    }
-    .hero-cards {
-      display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4);
-      max-width: 560px; margin: 0 auto;
-      animation: fadeInUp 0.9s ease;
-    }
-    @media (max-width: 480px) { .hero-cards { grid-template-columns: 1fr; } }
-    .hero-card {
-      padding: var(--space-6); border-radius: var(--radius-xl);
-      border: 2px solid transparent; cursor: pointer;
-      transition: all var(--transition); text-align: left;
-      background: var(--color-surface); box-shadow: var(--shadow-sm);
-    }
-    .hero-card.siphon-card { border-color: var(--color-siphon); }
-    .hero-card.siphon-card:hover { background: var(--color-siphon); color: #fff; transform: translateY(-4px); box-shadow: var(--shadow-lg); }
-    .hero-card.footprint-card { border-color: var(--color-footprint); }
-    .hero-card.footprint-card:hover { background: var(--color-footprint); color: #fff; transform: translateY(-4px); box-shadow: var(--shadow-lg); }
-    .hero-card .card-icon { font-size: 2.5rem; margin-bottom: var(--space-3); }
-    .hero-card h3 { font-size: var(--text-base); font-weight: 700; margin-bottom: var(--space-1); }
-    .hero-card p { font-size: var(--text-xs); color: var(--color-text-muted); max-width: none; margin: 0; }
-    .hero-card:hover p { color: rgba(255,255,255,0.85); }
+/* ── HOME ── */
+.home-hero{text-align:center;padding:40px 0 32px}
+.home-hero h1{font-size:clamp(2rem,6vw,3.5rem);font-weight:900;line-height:1.1;color:var(--blue);margin-bottom:12px}
+[data-theme=dark] .home-hero h1{color:var(--blue3)}
+.home-hero p{font-size:16px;color:var(--ink2);max-width:400px;margin:0 auto 32px}
+.home-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:500px;margin:0 auto}
+@media(max-width:440px){.home-cards{grid-template-columns:1fr}}
+.hcard{background:var(--card);border:2px solid var(--border);border-radius:var(--r2);padding:28px 20px;
+  cursor:pointer;transition:all var(--t);text-align:center}
+.hcard:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.hcard.sc:hover{border-color:var(--blue);background:var(--blue);color:#fff}
+.hcard.fc:hover{border-color:var(--green);background:var(--green);color:#fff}
+.hcard:hover .hcard-sub{color:rgba(255,255,255,.8)}
+.hcard-ico{font-size:3rem;margin-bottom:12px}
+.hcard-title{font-size:17px;font-weight:800;margin-bottom:6px}
+.hcard-sub{font-size:13px;color:var(--ink2)}
 
-    /* ─── SECTIONS ─── */
-    .section {
-      display: none; position: relative; z-index: 1;
-      padding: var(--space-10) var(--space-6);
-      max-width: 900px; margin: 0 auto;
-      animation: fadeIn 0.4s ease;
-    }
-    .section.active { display: block; }
-    .section-header {
-      text-align: center; margin-bottom: var(--space-10);
-    }
-    .section-tag {
-      display: inline-block; font-size: var(--text-xs); font-weight: 700;
-      text-transform: uppercase; letter-spacing: 0.08em;
-      padding: var(--space-1) var(--space-3); border-radius: var(--radius-full);
-      margin-bottom: var(--space-4);
-    }
-    .siphon-tag { background: rgba(0,119,182,0.12); color: var(--color-siphon); }
-    .footprint-tag { background: rgba(6,167,125,0.12); color: var(--color-footprint); }
-    .section-header h2 { font-family: var(--font-display); font-size: var(--text-xl); margin-bottom: var(--space-3); }
-    .section-header p { color: var(--color-text-muted); max-width: 580px; margin: 0 auto; }
+/* ── SECTION HEADER ── */
+.sec-head{text-align:center;margin-bottom:28px}
+.sec-head h2{font-size:clamp(1.5rem,4vw,2.2rem);font-weight:900;margin-bottom:8px}
+.sec-head p{font-size:15px;color:var(--ink2);max-width:420px;margin:0 auto}
 
-    /* ─── SIPHON SIMULATOR ─── */
-    .siphon-scene {
-      background: var(--color-surface);
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius-xl);
-      padding: var(--space-6);
-      box-shadow: var(--shadow-md);
-      margin-bottom: var(--space-6);
-    }
-    .siphon-canvas-wrap {
-      position: relative; width: 100%; height: 320px;
-      border-radius: var(--radius-lg); overflow: hidden;
-      background: linear-gradient(180deg, #e0f4ff 0%, #b8e6ff 100%);
-    }
-    [data-theme="dark"] .siphon-canvas-wrap { background: linear-gradient(180deg, #051a2e 0%, #072540 100%); }
-    #siphonCanvas { width: 100%; height: 100%; }
+/* ── SIPHON ── */
+.siphon-wrap{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);
+  padding:20px;box-shadow:var(--shadow);margin-bottom:20px}
+#siphonCanvas{width:100%;border-radius:var(--r);display:block;height:280px}
+.siphon-ctrl{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:16px;align-items:center}
+.btn{padding:12px 28px;border-radius:99px;font-size:15px;font-weight:800;transition:all var(--t);border:2px solid transparent}
+.btn-blue{background:var(--blue);color:#fff;border-color:var(--blue)}
+.btn-blue:hover{background:#005a8e;transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,119,182,.3)}
+.btn-ghost{border-color:var(--border);color:var(--ink2)}
+.btn-ghost:hover{border-color:var(--blue);color:var(--blue)}
+.btn-green{background:var(--green);color:#fff;border-color:var(--green)}
+.btn-green:hover{background:#048a68;transform:translateY(-2px);box-shadow:0 6px 20px rgba(6,167,125,.3)}
+.spd{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--ink2)}
+input[type=range]{accent-color:var(--blue);width:80px}
 
-    .siphon-controls {
-      display: flex; flex-wrap: wrap; gap: var(--space-3);
-      align-items: center; justify-content: center;
-      margin-top: var(--space-5);
-    }
-    .ctrl-btn {
-      padding: var(--space-3) var(--space-6); border-radius: var(--radius-full);
-      font-size: var(--text-sm); font-weight: 700;
-      transition: all var(--transition); border: 2px solid;
-    }
-    .ctrl-btn.primary {
-      background: var(--color-primary); border-color: var(--color-primary); color: #fff;
-    }
-    .ctrl-btn.primary:hover { background: var(--color-primary-hover); border-color: var(--color-primary-hover); transform: translateY(-2px); box-shadow: var(--shadow-md); }
-    .ctrl-btn.secondary {
-      background: transparent; border-color: var(--color-border); color: var(--color-text-muted);
-    }
-    .ctrl-btn.secondary:hover { border-color: var(--color-primary); color: var(--color-primary); }
-    .ctrl-btn.success {
-      background: var(--color-footprint); border-color: var(--color-footprint); color: #fff;
-    }
-    .ctrl-btn.success:hover { background: var(--color-footprint-hover); border-color: var(--color-footprint-hover); transform: translateY(-2px); }
+/* STATS ROW */
+.stats3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:20px}
+.scard{background:var(--card);border:1px solid var(--border);border-radius:var(--r);
+  padding:16px 10px;text-align:center;box-shadow:var(--shadow)}
+.scard-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ink2);margin-bottom:4px}
+.scard-val{font-size:2rem;font-weight:900;color:var(--blue);font-variant-numeric:tabular-nums;line-height:1}
+.scard-unit{font-size:11px;color:var(--ink3);margin-top:2px}
 
-    .speed-control {
-      display: flex; align-items: center; gap: var(--space-2);
-      font-size: var(--text-sm); color: var(--color-text-muted);
-    }
-    input[type=range] { accent-color: var(--color-primary); width: 90px; }
+/* STAGE PILLS */
+.stages{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px}
+@media(max-width:480px){.stages{grid-template-columns:1fr}}
+.stage{background:var(--card);border:1px solid var(--border);border-radius:var(--r);
+  padding:16px;display:flex;gap:12px;align-items:flex-start;box-shadow:var(--shadow)}
+.stage-num{min-width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--blue2));
+  color:#fff;font-size:14px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.stage-ico{font-size:1.6rem;flex-shrink:0;margin-top:2px}
+.stage-body h4{font-size:14px;font-weight:800;margin-bottom:3px}
+.stage-body p{font-size:13px;color:var(--ink2);line-height:1.4}
 
-    /* ─── SIPHON STATS ─── */
-    .siphon-stats {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-3);
-      margin-bottom: var(--space-6);
-    }
-    @media (max-width: 520px) { .siphon-stats { grid-template-columns: 1fr 1fr; } }
-    .stat-card {
-      background: var(--color-surface); border: 1px solid var(--color-border);
-      border-radius: var(--radius-lg); padding: var(--space-4); text-align: center;
-      box-shadow: var(--shadow-sm);
-    }
-    .stat-label { font-size: var(--text-xs); color: var(--color-text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: var(--space-1); }
-    .stat-value { font-size: var(--text-lg); font-weight: 800; color: var(--color-primary); font-variant-numeric: tabular-nums; }
-    .stat-unit { font-size: var(--text-xs); color: var(--color-text-faint); }
+/* FACT CHIP */
+.fact-chip{background:linear-gradient(135deg,rgba(0,119,182,.1),rgba(0,180,216,.06));
+  border:1px solid rgba(0,119,182,.2);border-radius:var(--r);padding:14px 18px;
+  display:flex;gap:10px;align-items:center;margin-bottom:20px}
+.fact-chip .ico{font-size:1.8rem;flex-shrink:0}
+.fact-chip p{font-size:14px;font-weight:600;color:var(--ink);line-height:1.4}
+.fact-chip strong{color:var(--blue)}
 
-    /* ─── SCIENCE BOX ─── */
-    .science-box {
-      background: linear-gradient(135deg, rgba(0,119,182,0.06), rgba(0,180,216,0.04));
-      border: 1px solid rgba(0,119,182,0.2);
-      border-left: 4px solid var(--color-primary);
-      border-radius: var(--radius-lg); padding: var(--space-5);
-      margin-bottom: var(--space-5);
-    }
-    [data-theme="dark"] .science-box { background: rgba(0,119,182,0.08); border-color: rgba(0,150,199,0.3); }
-    .science-box h4 { font-size: var(--text-sm); font-weight: 700; color: var(--color-primary); margin-bottom: var(--space-2); display: flex; align-items: center; gap: var(--space-2); }
-    .science-box p, .science-box li { font-size: var(--text-sm); color: var(--color-text-muted); }
-    .science-box ul { padding-left: var(--space-4); margin-top: var(--space-2); }
-    .science-box li { margin-bottom: var(--space-1); }
+/* EQ strip */
+.eq{background:var(--blue);color:#fff;border-radius:var(--r);padding:14px 20px;
+  font-family:'Courier New',monospace;font-size:13px;text-align:center;margin-bottom:24px;letter-spacing:.03em}
 
-    /* ─── PHENOMENON STEPS ─── */
-    .steps {
-      display: grid; gap: var(--space-4); margin-bottom: var(--space-6);
-    }
-    .step {
-      display: flex; gap: var(--space-4); align-items: flex-start;
-      background: var(--color-surface); border: 1px solid var(--color-border);
-      border-radius: var(--radius-lg); padding: var(--space-4);
-      box-shadow: var(--shadow-sm); transition: transform var(--transition);
-    }
-    .step:hover { transform: translateX(4px); }
-    .step-num {
-      min-width: 36px; height: 36px; border-radius: 50%;
-      background: var(--color-primary); color: #fff;
-      font-size: var(--text-sm); font-weight: 800;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-    }
-    .step-body h4 { font-size: var(--text-sm); font-weight: 700; margin-bottom: var(--space-1); }
-    .step-body p { font-size: var(--text-xs); color: var(--color-text-muted); max-width: none; }
+/* ── FOOTPRINT ── */
+.fp-progress{background:var(--border);border-radius:99px;height:10px;overflow:hidden;margin-bottom:24px}
+.fp-fill{height:100%;background:linear-gradient(90deg,var(--green),var(--green2));
+  border-radius:99px;transition:width .5s cubic-bezier(.34,1.56,.64,1)}
 
-    /* ─── FOOTPRINT QUIZ ─── */
-    .quiz-progress {
-      background: var(--color-surface-2); border-radius: var(--radius-full);
-      height: 8px; overflow: hidden; margin-bottom: var(--space-8);
-      border: 1px solid var(--color-border);
-    }
-    .quiz-progress-fill {
-      height: 100%; background: linear-gradient(90deg, var(--color-footprint), #06d6a0);
-      transition: width 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-      border-radius: var(--radius-full);
-    }
-    .category-block {
-      background: var(--color-surface); border: 1px solid var(--color-border);
-      border-radius: var(--radius-xl); padding: var(--space-6);
-      margin-bottom: var(--space-6); box-shadow: var(--shadow-sm);
-    }
-    .category-header {
-      display: flex; align-items: center; gap: var(--space-3);
-      margin-bottom: var(--space-2);
-    }
-    .category-icon-wrap {
-      width: 44px; height: 44px; border-radius: var(--radius-lg);
-      background: linear-gradient(135deg, rgba(6,167,125,0.15), rgba(6,214,160,0.1));
-      display: flex; align-items: center; justify-content: center; font-size: 1.4rem;
-      flex-shrink: 0;
-    }
-    .category-header h3 { font-size: var(--text-base); font-weight: 700; }
-    .category-fact {
-      font-size: var(--text-xs); color: var(--color-text-muted);
-      background: rgba(6,167,125,0.06); border-radius: var(--radius-md);
-      padding: var(--space-2) var(--space-3); margin-bottom: var(--space-4);
-      border-left: 3px solid var(--color-footprint);
-    }
-    .food-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-      gap: var(--space-3);
-    }
-    .food-item {
-      background: var(--color-surface-2); border: 2px solid var(--color-border);
-      border-radius: var(--radius-lg); padding: var(--space-3); text-align: center;
-      cursor: pointer; transition: all var(--transition); user-select: none;
-    }
-    .food-item:hover { transform: translateY(-2px); border-color: var(--color-footprint); background: rgba(6,167,125,0.06); }
-    .food-item.selected {
-      border-color: var(--color-footprint); background: rgba(6,167,125,0.12);
-      transform: scale(1.04);
-    }
-    .food-item .emoji { font-size: 1.8rem; margin-bottom: var(--space-1); }
-    .food-item .name { font-size: var(--text-xs); font-weight: 700; margin-bottom: 2px; }
-    .food-item .water-cost { font-size: 0.7rem; color: var(--color-text-faint); }
-    .food-item .qty-ctrl {
-      display: none; align-items: center; justify-content: center; gap: var(--space-2); margin-top: var(--space-2);
-    }
-    .food-item.selected .qty-ctrl { display: flex; }
-    .qty-btn {
-      width: 22px; height: 22px; border-radius: 50%; background: var(--color-footprint);
-      color: #fff; font-size: 0.85rem; font-weight: 700;
-      display: flex; align-items: center; justify-content: center; line-height: 1;
-      transition: transform var(--transition);
-    }
-    .qty-btn:hover { transform: scale(1.2); }
-    .qty-val { font-size: var(--text-xs); font-weight: 700; min-width: 16px; }
+/* WELCOME */
+.fp-welcome{text-align:center;background:var(--card);border:1px solid var(--border);
+  border-radius:var(--r2);padding:40px 24px;box-shadow:var(--shadow)}
+.fp-welcome .big{font-size:4rem;margin-bottom:16px;display:block;animation:bob 2s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.fp-welcome h2{font-size:1.8rem;font-weight:900;margin-bottom:12px}
+.fp-welcome p{font-size:15px;color:var(--ink2);max-width:380px;margin:0 auto 24px}
 
-    /* ─── RESULTS ─── */
-    .result-screen {
-      background: var(--color-surface); border: 1px solid var(--color-border);
-      border-radius: var(--radius-xl); padding: var(--space-8);
-      text-align: center; box-shadow: var(--shadow-lg);
-    }
-    .result-drop { font-size: 4rem; animation: drop-bounce 2s ease-in-out infinite; display: block; margin-bottom: var(--space-4); }
-    @keyframes drop-bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
-    .result-title { font-family: var(--font-display); font-size: var(--text-xl); margin-bottom: var(--space-3); }
-    .result-number {
-      font-size: clamp(2.5rem,6vw,4rem); font-weight: 800;
-      color: var(--color-footprint); font-variant-numeric: tabular-nums;
-      margin-bottom: var(--space-2);
-    }
-    .result-sub { font-size: var(--text-sm); color: var(--color-text-muted); margin-bottom: var(--space-6); }
-    .result-bar-wrap { margin-bottom: var(--space-5); }
-    .result-bar-label { font-size: var(--text-xs); font-weight: 600; margin-bottom: var(--space-2); color: var(--color-text-muted); }
-    .result-bar { background: var(--color-surface-2); height: 20px; border-radius: var(--radius-full); overflow: hidden; border: 1px solid var(--color-border); }
-    .result-bar-fill { height: 100%; background: linear-gradient(90deg, var(--color-footprint), #06d6a0); transition: width 1.2s cubic-bezier(0.34, 1.56, 0.64, 1); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: flex-end; padding-right: var(--space-2); }
-    .result-bar-fill span { font-size: 0.65rem; font-weight: 700; color: #fff; white-space: nowrap; }
-    .breakdown-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px,1fr)); gap: var(--space-3); text-align: left; margin: var(--space-6) 0; }
-    .breakdown-item { background: var(--color-surface-2); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-3); }
-    .breakdown-cat { font-size: var(--text-xs); color: var(--color-text-muted); font-weight: 600; margin-bottom: 2px; }
-    .breakdown-liters { font-size: var(--text-sm); font-weight: 800; color: var(--color-primary); font-variant-numeric: tabular-nums; }
-    .tips-box {
-      background: linear-gradient(135deg, rgba(6,167,125,0.06), rgba(6,214,160,0.04));
-      border: 1px solid rgba(6,167,125,0.2); border-left: 4px solid var(--color-footprint);
-      border-radius: var(--radius-lg); padding: var(--space-5); text-align: left; margin-bottom: var(--space-6);
-    }
-    .tips-box h4 { font-size: var(--text-sm); font-weight: 700; color: var(--color-footprint); margin-bottom: var(--space-3); }
-    .tips-box li { font-size: var(--text-sm); color: var(--color-text-muted); padding: var(--space-1) 0; border-bottom: 1px solid rgba(6,167,125,0.1); list-style: none; padding-left: var(--space-4); position: relative; }
-    .tips-box li::before { content: '✦'; position: absolute; left: 0; color: var(--color-footprint); font-size: 0.6rem; top: 0.5em; }
-    .tips-box li:last-child { border-bottom: none; }
+/* FACT TRIO */
+.fact-trio{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:28px}
+@media(max-width:480px){.fact-trio{grid-template-columns:1fr 1fr}}
+.ftile{background:linear-gradient(135deg,rgba(0,119,182,.08),rgba(0,180,216,.04));
+  border:1px solid rgba(0,119,182,.18);border-radius:var(--r);padding:14px 10px;text-align:center}
+.ftile .num{font-size:1.4rem;font-weight:900;color:var(--blue);line-height:1}
+.ftile .lbl{font-size:11px;color:var(--ink2);margin-top:4px;font-weight:600}
 
-    /* ─── QUIZ NAV ─── */
-    .quiz-nav { display: flex; gap: var(--space-3); flex-wrap: wrap; }
-    .quiz-nav .ctrl-btn { flex: 1; min-width: 120px; text-align: center; }
+/* QUIZ CARD */
+.q-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);
+  padding:20px;box-shadow:var(--shadow);margin-bottom:16px}
+.q-catbar{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.q-caticon{width:44px;height:44px;border-radius:var(--r);background:linear-gradient(135deg,rgba(6,167,125,.15),rgba(6,214,160,.08));
+  display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0}
+.q-catbar h3{font-size:17px;font-weight:800}
+.q-fact{font-size:13px;color:var(--ink2);background:rgba(6,167,125,.07);border-left:3px solid var(--green);
+  border-radius:0 var(--r) var(--r) 0;padding:8px 12px;margin-bottom:14px;font-weight:600}
+[dir=rtl] .q-fact{border-left:none;border-right:3px solid var(--green);border-radius:var(--r) 0 0 var(--r)}
+.food-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:10px}
+.fi{background:var(--bg);border:2px solid var(--border);border-radius:var(--r);
+  padding:12px 8px;text-align:center;cursor:pointer;transition:all var(--t);user-select:none}
+.fi:hover{border-color:var(--green);transform:translateY(-2px)}
+.fi.sel{border-color:var(--green);background:rgba(6,167,125,.12);transform:scale(1.04)}
+.fi .em{font-size:1.6rem;margin-bottom:4px}
+.fi .nm{font-size:12px;font-weight:700;margin-bottom:2px;line-height:1.2}
+.fi .wt{font-size:11px;color:var(--ink3)}
+.fi .qc{display:none;align-items:center;justify-content:center;gap:6px;margin-top:6px}
+.fi.sel .qc{display:flex}
+.qb{width:22px;height:22px;border-radius:50%;background:var(--green);color:#fff;
+  font-size:14px;font-weight:900;display:flex;align-items:center;justify-content:center;line-height:1;
+  transition:transform var(--t)}
+.qb:hover{transform:scale(1.2)}
+.qv{font-size:13px;font-weight:900;min-width:16px}
+.q-nav{display:flex;gap:10px;flex-wrap:wrap}
+.q-nav .btn{flex:1;min-width:110px;text-align:center}
 
-    /* ─── ANIMATIONS ─── */
-    @keyframes fadeIn { from{opacity:0} to{opacity:1} }
-    @keyframes fadeInDown { from{opacity:0;transform:translateY(-12px)} to{opacity:1;transform:translateY(0)} }
-    @keyframes fadeInUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
-    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.6} }
+/* RESULT */
+.r-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);
+  padding:32px 24px;text-align:center;box-shadow:var(--shadow)}
+.r-drop{font-size:4rem;display:block;animation:bob 2s ease-in-out infinite;margin-bottom:16px}
+.r-num{font-size:clamp(3rem,8vw,5rem);font-weight:900;color:var(--green);font-variant-numeric:tabular-nums;line-height:1}
+.r-unit{font-size:15px;color:var(--ink2);margin-bottom:6px}
+.r-badge{display:inline-block;padding:6px 18px;border-radius:99px;font-size:14px;font-weight:800;margin-bottom:20px}
+.r-msg{font-size:16px;font-weight:700;color:var(--ink);max-width:400px;margin:0 auto 24px}
+.r-bar-lbl{font-size:12px;font-weight:700;color:var(--ink2);margin-bottom:6px;text-align:left}
+.r-bar{background:var(--border);height:22px;border-radius:99px;overflow:hidden;margin-bottom:20px}
+.r-bar-fill{height:100%;background:linear-gradient(90deg,var(--green),var(--green2));border-radius:99px;
+  display:flex;align-items:center;justify-content:flex-end;padding-right:8px;transition:width 1.2s cubic-bezier(.34,1.56,.64,1)}
+.r-bar-fill span{font-size:11px;font-weight:800;color:#fff;white-space:nowrap}
+.impact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px}
+@media(max-width:440px){.impact-grid{grid-template-columns:1fr 1fr}}
+.i-tile{background:var(--bg);border:1px solid var(--border);border-radius:var(--r);padding:14px 10px;text-align:center}
+.i-tile .ico{font-size:1.8rem;margin-bottom:6px}
+.i-tile .val{font-size:1.1rem;font-weight:900;color:var(--blue)}
+.i-tile .desc{font-size:11px;color:var(--ink2);font-weight:600;margin-top:2px}
+.tips-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:24px;text-align:left}
+@media(max-width:440px){.tips-row{grid-template-columns:1fr}}
+.tip{display:flex;gap:8px;align-items:flex-start;background:var(--card);border:1px solid var(--border);
+  border-radius:var(--r);padding:12px}
+.tip-ico{font-size:1.2rem;flex-shrink:0}
+.tip-txt{font-size:13px;font-weight:600;color:var(--ink2);line-height:1.3}
+.r-btns{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
 
-    /* ─── RTL SUPPORT ─── */
-    [dir="rtl"] .step:hover { transform: translateX(-4px); }
-    [dir="rtl"] .science-box { border-left: none; border-right: 4px solid var(--color-primary); }
-    [dir="rtl"] .tips-box { border-left: none; border-right: 4px solid var(--color-footprint); }
-    [dir="rtl"] .category-fact { border-left: none; border-right: 3px solid var(--color-footprint); }
-    [dir="rtl"] .tips-box li { padding-left: 0; padding-right: var(--space-4); }
-    [dir="rtl"] .tips-box li::before { left: auto; right: 0; }
+/* BREAKDOWN */
+.bk-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px;margin-bottom:20px;text-align:left}
+.bk-item{background:var(--bg);border:1px solid var(--border);border-radius:var(--r);padding:10px 12px}
+.bk-cat{font-size:11px;font-weight:700;color:var(--ink2);margin-bottom:2px}
+.bk-L{font-size:1rem;font-weight:900;color:var(--blue);font-variant-numeric:tabular-nums}
 
-    /* ─── RESPONSIVE ─── */
-    @media (max-width: 600px) {
-      .nav { padding: var(--space-2) var(--space-3); gap: var(--space-2); }
-      .nav-logo { font-size: var(--text-base); }
-      .siphon-canvas-wrap { height: 240px; }
-      .siphon-stats { grid-template-columns: 1fr 1fr; }
-      .food-grid { grid-template-columns: repeat(auto-fill, minmax(100px,1fr)); }
-      .hero { padding: var(--space-10) var(--space-4) var(--space-8); }
-      .result-screen { padding: var(--space-5); }
-      .breakdown-grid { grid-template-columns: 1fr 1fr; }
-    }
+/* ─── RTL ─── */
+[dir=rtl] .r-bar-lbl{text-align:right}
+[dir=rtl] .r-bar-fill{justify-content:flex-start;padding-right:0;padding-left:8px}
+[dir=rtl] .tips-row{text-align:right}
+[dir=rtl] .tip{flex-direction:row-reverse}
+[dir=rtl] .q-fact{border-left:none;border-right:3px solid var(--green);border-radius:var(--r) 0 0 var(--r)}
 
-    /* ─── WORLD WATER DAY BANNER ─── */
-    .wwd-banner {
-      background: linear-gradient(135deg, var(--color-water-deep), var(--color-primary));
-      color: #fff; text-align: center; padding: var(--space-3) var(--space-6);
-      font-size: var(--text-xs); font-weight: 600; letter-spacing: 0.03em;
-      position: relative; z-index: 1; overflow: hidden;
-    }
-    .wwd-banner::after {
-      content: ''; position: absolute; inset: 0;
-      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Ccircle cx='20' cy='20' r='1' fill='white' opacity='0.15'/%3E%3C/svg%3E") repeat;
-    }
-    .wwd-banner span { position: relative; z-index: 1; }
-
-    /* ─── EQUATION BOX ─── */
-    .eq-box {
-      background: var(--color-surface); border: 1px solid var(--color-border);
-      border-radius: var(--radius-lg); padding: var(--space-4);
-      font-family: 'Courier New', monospace; font-size: var(--text-sm);
-      color: var(--color-primary); text-align: center; margin: var(--space-4) 0;
-      overflow-x: auto;
-    }
-  </style>
+@media(max-width:520px){
+  .stats3{grid-template-columns:1fr 1fr}
+  .impact-grid{grid-template-columns:1fr 1fr}
+  .stages{grid-template-columns:1fr}
+  .fact-trio{grid-template-columns:1fr 1fr}
+}
+</style>
 </head>
 <body>
 
-  <!-- Background -->
-  <div class="water-bg" aria-hidden="true">
-    <div class="wave"></div>
-    <div class="wave wave2"></div>
+<svg class="waves" viewBox="0 0 1200 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+  <path fill="#00b4d8" d="M0,60 C200,100 400,20 600,60 C800,100 1000,20 1200,60 L1200,120 L0,120Z"/>
+  <path fill="#0077b6" d="M0,80 C300,20 600,100 900,80 C1050,60 1150,70 1200,80 L1200,120 L0,120Z"/>
+</svg>
+
+<div class="banner" id="wwd">🌍 World Water Day 2026 — Where Water Flows, Equality Grows 💧</div>
+
+<nav class="nav">
+  <div class="nav-logo">Water<em>Day</em></div>
+  <div class="tabs">
+    <button class="tab" data-tab="home" data-a="t" onclick="goTab('home')" id="th">🏠 <span id="t-home">Home</span></button>
+    <button class="tab" data-tab="siphon" onclick="goTab('siphon')" id="ts">🔬 <span id="t-siphon">Siphon</span></button>
+    <button class="tab" data-tab="fp" onclick="goTab('fp')" id="tf">💧 <span id="t-fp">Footprint</span></button>
   </div>
-  <div class="bubbles" aria-hidden="true" id="bubbles"></div>
+  <div class="ctl">
+    <button class="ic" id="langBtn" onclick="toggleLang()">AR</button>
+    <button class="ic" onclick="toggleTheme()" title="Toggle theme">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+    </button>
+  </div>
+</nav>
 
-  <!-- World Water Day Banner -->
-  <div class="wwd-banner">
-    <span id="wwd-txt">🌍 World Water Day 2026 — Where Water Flows, Equality Grows 💧</span>
+<!-- ══ HOME ══ -->
+<section class="sec on" id="s-home">
+  <div class="home-hero">
+    <h1 id="h-title">Explore Water 💧</h1>
+    <p id="h-sub">Two fun science adventures for World Water Day</p>
+    <div class="home-cards">
+      <div class="hcard sc" onclick="goTab('siphon')">
+        <div class="hcard-ico">🔬</div>
+        <div class="hcard-title" id="h-c1">Siphoning</div>
+        <div class="hcard-sub" id="h-c1s">Watch water jump between two pots through a fabric wick</div>
+      </div>
+      <div class="hcard fc" onclick="goTab('fp')">
+        <div class="hcard-ico">🌍</div>
+        <div class="hcard-title" id="h-c2">Water Footprint</div>
+        <div class="hcard-sub" id="h-c2s">How much water hides in your daily food?</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SIPHON ══ -->
+<section class="sec" id="s-siphon">
+  <div class="sec-head">
+    <h2 id="si-title">🔬 The Siphoning Phenomenon</h2>
+    <p id="si-sub">Water climbs up through fabric — then gravity pulls it down</p>
   </div>
 
-  <!-- NAV -->
-  <nav class="nav">
-    <div class="nav-logo">
-      <span id="logo1">Water</span><span id="logo2">Day</span>
-    </div>
-    <div class="nav-tabs">
-      <button class="tab-btn" data-tab="home" data-active="true" id="tab-home" onclick="showTab('home')">
-        <span id="tb-home">🏠 Home</span>
-      </button>
-      <button class="tab-btn" data-tab="siphon" id="tab-siphon" onclick="showTab('siphon')">
-        <span id="tb-siphon">🔬 Siphoning</span>
-      </button>
-      <button class="tab-btn" data-tab="footprint" id="tab-footprint" onclick="showTab('footprint')">
-        <span id="tb-footprint">💧 Water Footprint</span>
-      </button>
-    </div>
-    <div class="nav-controls">
-      <button class="icon-btn lang-btn" onclick="toggleLang()" id="langBtn" title="Toggle Language">AR</button>
-      <button class="icon-btn" onclick="toggleTheme()" data-theme-toggle title="Toggle theme">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-      </button>
-    </div>
-  </nav>
+  <!-- Quick fact chips (no paragraphs) -->
+  <div class="fact-chip">
+    <span class="ico">🧵</span>
+    <p id="fc1"><strong>Fabric wick</strong> = tiny tubes between fibers. Water clings to them and travels upward — this is <strong>capillary action</strong></p>
+  </div>
+  <div class="fact-chip">
+    <span class="ico">⬇️</span>
+    <p id="fc2">Once water reaches the <strong>top of the wick</strong>, gravity takes over and pulls it into the other pot</p>
+  </div>
 
-  <!-- ═══════════ HOME ═══════════ -->
-  <section class="section active" id="sec-home">
-    <div class="hero">
-      <div class="hero-badge"><span id="badge-txt">💧 World Water Day 2026</span></div>
-      <h1 id="hero-title">Explore Water Science &amp; Your Impact</h1>
-      <p id="hero-desc">Two interactive adventures — discover the science of siphoning and calculate your hidden water footprint.</p>
-      <div class="hero-cards">
-        <div class="hero-card siphon-card" onclick="showTab('siphon')">
-          <div class="card-icon">🧪</div>
-          <h3 id="card1-title">Siphoning Phenomenon</h3>
-          <p id="card1-desc">Watch water flow between two pots through a fabric wick. Learn the science behind capillary action &amp; gravity.</p>
-        </div>
-        <div class="hero-card footprint-card" onclick="showTab('footprint')">
-          <div class="card-icon">🌍</div>
-          <h3 id="card2-title">Water Footprint</h3>
-          <p id="card2-desc">Calculate how many liters of water are hidden in your daily food choices. Discover your true water impact.</p>
-        </div>
+  <!-- Simulator -->
+  <div class="siphon-wrap">
+    <canvas id="siphonCanvas"></canvas>
+    <div class="siphon-ctrl">
+      <button class="btn btn-blue" id="siBtn" onclick="toggleSiphon()"><span id="si-btxt">▶ Start</span></button>
+      <button class="btn btn-ghost" onclick="resetSiphon()"><span id="si-rtxt">↺ Reset</span></button>
+      <div class="spd">
+        <span id="si-spd">Speed</span>
+        <input type="range" id="spdr" min=".5" max="4" step=".5" value="1.5" oninput="setSpd(this.value)">
+        <span id="spdv">1.5×</span>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- ═══════════ SIPHON ═══════════ -->
-  <section class="section" id="sec-siphon">
-    <div class="section-header">
-      <div class="section-tag siphon-tag" id="stag">🔬 Siphoning Phenomenon</div>
-      <h2 id="siphon-title">How Does Water Travel Through Fabric?</h2>
-      <p id="siphon-desc">Two containers — one filled with water. A fabric wick bridges them. Watch capillary action and gravity work together to transfer water.</p>
+  <!-- Live stats -->
+  <div class="stats3">
+    <div class="scard">
+      <div class="scard-lbl" id="sl1">Pot A</div>
+      <div class="scard-val" id="sv1">100</div>
+      <div class="scard-unit" id="su1">% full</div>
     </div>
-
-    <!-- Science explanation -->
-    <div class="science-box" style="margin-bottom:var(--space-5)">
-      <h4>🔬 <span id="sci-title">The Science Behind Siphoning</span></h4>
-      <p id="sci-body">When a fabric wick (like cotton) bridges two containers, water molecules cling to the fibers (adhesion) and to each other (cohesion). This drives water upward against gravity — a process called <strong>capillary action</strong>. Once the water passes the peak of the wick and flows downward, <strong>gravity</strong> takes over, pulling it into the lower container. This combined effect is the <em>open capillary siphon</em>.</p>
+    <div class="scard">
+      <div class="scard-lbl" id="sl2">Transferred</div>
+      <div class="scard-val" id="sv2">0</div>
+      <div class="scard-unit" id="su2">mL</div>
     </div>
+    <div class="scard">
+      <div class="scard-lbl" id="sl3">Pot B</div>
+      <div class="scard-val" id="sv3">0</div>
+      <div class="scard-unit" id="su3">% full</div>
+    </div>
+  </div>
 
-    <!-- Simulator -->
-    <div class="siphon-scene">
-      <div class="siphon-canvas-wrap">
-        <canvas id="siphonCanvas"></canvas>
-      </div>
-      <div class="siphon-controls">
-        <button class="ctrl-btn primary" id="startSiphonBtn" onclick="toggleSiphon()">
-          <span id="siphon-btn-txt">▶ Start Siphon</span>
-        </button>
-        <button class="ctrl-btn secondary" onclick="resetSiphon()">
-          <span id="reset-btn-txt">↺ Reset</span>
-        </button>
-        <div class="speed-control">
-          <span id="spd-lbl">Speed:</span>
-          <input type="range" id="speedSlider" min="0.5" max="4" step="0.5" value="1.5" oninput="updateSpeed(this.value)">
-          <span id="speedVal">1.5×</span>
-        </div>
+  <!-- 4 stages — visual cards, minimal text -->
+  <div class="stages">
+    <div class="stage">
+      <div class="stage-num">1</div>
+      <div class="stage-ico">💧</div>
+      <div class="stage-body">
+        <h4 id="s1h">Wick gets wet</h4>
+        <p id="s1p">Water molecules stick to fabric fibers (adhesion)</p>
       </div>
     </div>
-
-    <!-- Stats -->
-    <div class="siphon-stats">
-      <div class="stat-card">
-        <div class="stat-label" id="sl1">Left Pot</div>
-        <div class="stat-value" id="sv-left">100</div>
-        <div class="stat-unit" id="su1">% full</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label" id="sl2">Transferred</div>
-        <div class="stat-value" id="sv-transfer">0</div>
-        <div class="stat-unit" id="su2">mL (est.)</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label" id="sl3">Right Pot</div>
-        <div class="stat-value" id="sv-right">0</div>
-        <div class="stat-unit" id="su3">% full</div>
+    <div class="stage">
+      <div class="stage-num">2</div>
+      <div class="stage-ico">⬆️</div>
+      <div class="stage-body">
+        <h4 id="s2h">Water climbs up</h4>
+        <p id="s2p">Capillary action pulls water upward against gravity</p>
       </div>
     </div>
-
-    <!-- Steps -->
-    <h3 style="font-family:var(--font-display);font-size:var(--text-lg);margin-bottom:var(--space-4)" id="steps-title">The 4 Stages of Capillary Siphoning</h3>
-    <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-body">
-          <h4 id="step1-h">Wetting the Wick</h4>
-          <p id="step1-p">Water molecules adhere to the fabric fibers. Hydrogen bonds between water and cellulose create a strong pull — this is adhesion. The wick becomes saturated as water climbs against gravity.</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-body">
-          <h4 id="step2-h">Climbing the Wick (Capillary Action)</h4>
-          <p id="step2-p">Surface tension and adhesion drive water up through the tiny channels between fibers. The smaller the gap, the stronger the capillary force — described by the Lucas-Washburn equation: h ∝ √(γ·r·t / η).</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-body">
-          <h4 id="step3-h">Passing the Peak</h4>
-          <p id="step3-p">Once water reaches the highest point of the wick, the column on the far side becomes heavier. Gravity now pulls water downward into the second container. The atmospheric pressure difference sustains the flow.</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">4</div>
-        <div class="step-body">
-          <h4 id="step4-h">Equilibrium</h4>
-          <p id="step4-p">Flow continues until both containers reach the same water level. At equilibrium, there is no height difference, so the net gravitational force becomes zero and the siphon stops.</p>
-        </div>
+    <div class="stage">
+      <div class="stage-num">3</div>
+      <div class="stage-ico">🌊</div>
+      <div class="stage-body">
+        <h4 id="s3h">Over the top</h4>
+        <p id="s3p">At the peak, gravity wins — water falls into Pot B</p>
       </div>
     </div>
-
-    <!-- Key Equation -->
-    <div class="science-box">
-      <h4>📐 <span id="eq-title">Key Physics</span></h4>
-      <div class="eq-box" id="eq-box">h(t) ∝ √(γ · r · t / η) &nbsp;|&nbsp; ΔP = ρgh &nbsp;|&nbsp; Q = πr⁴ΔP / (8ηL)</div>
-      <p id="eq-desc">Where γ = surface tension, r = pore radius, η = viscosity, ΔP = pressure difference, ρ = water density, h = height, Q = flow rate. Smaller pores → stronger capillary pull. Greater height difference → faster siphon flow.</p>
-    </div>
-
-    <div style="text-align:center;margin-top:var(--space-8)">
-      <button class="ctrl-btn success" onclick="showTab('footprint')">
-        <span id="go-footprint">💧 Now Calculate Your Water Footprint →</span>
-      </button>
-    </div>
-  </section>
-
-  <!-- ═══════════ FOOTPRINT ═══════════ -->
-  <section class="section" id="sec-footprint">
-    <div class="section-header">
-      <div class="section-tag footprint-tag" id="ftag">💧 Water Footprint Calculator</div>
-      <h2 id="fp-title">How Much Water Is in Your Food?</h2>
-      <p id="fp-desc">Every food item requires water to produce. Select what you eat daily to calculate your hidden water footprint.</p>
-    </div>
-
-    <!-- Quiz Progress -->
-    <div class="quiz-progress">
-      <div class="quiz-progress-fill" id="quizProgress" style="width:0%"></div>
-    </div>
-
-    <!-- Welcome Screen -->
-    <div id="fp-welcome" class="result-screen">
-      <span class="result-drop">💧</span>
-      <h2 class="result-title" id="fpw-title">Discover Your Hidden Water</h2>
-      <p style="color:var(--color-text-muted);max-width:480px;margin:0 auto var(--space-6)" id="fpw-body">Did you know 1 kg of beef requires 15,500 liters of water? Or that a cup of coffee hides 140 liters? Let's find out your daily water footprint from food.</p>
-      <div class="science-box" style="text-align:left;margin-bottom:var(--space-6)">
-        <h4>🌍 <span id="fpw-sci">What is a Water Footprint?</span></h4>
-        <p id="fpw-sci-body">The water footprint of a food item measures all freshwater used in its entire production process — from growing crops and feeding animals, to processing and packaging. It includes green water (rainfall), blue water (irrigation), and grey water (pollution dilution). This concept was developed by hydrologist Arjen Hoekstra and published in peer-reviewed research on global water use.</p>
+    <div class="stage">
+      <div class="stage-num">4</div>
+      <div class="stage-ico">⚖️</div>
+      <div class="stage-body">
+        <h4 id="s4h">Equal levels</h4>
+        <p id="s4p">Flow stops when both pots reach the same level</p>
       </div>
-      <button class="ctrl-btn success" onclick="startQuiz()" id="fpw-start">🚀 <span id="fpw-start-txt">Start the Quiz</span></button>
     </div>
+  </div>
 
-    <!-- Quiz Screens (built by JS) -->
-    <div id="fp-quiz" style="display:none"></div>
+  <!-- Equation strip -->
+  <div class="eq" id="eq">h ∝ √(γ · r · t / η) &nbsp;·&nbsp; ΔP = ρgh &nbsp;·&nbsp; Q = πr⁴ΔP / 8ηL</div>
 
-    <!-- Results Screen -->
-    <div id="fp-results" style="display:none"></div>
-  </section>
+  <div style="text-align:center">
+    <button class="btn btn-green" onclick="goTab('fp')"><span id="si-go">💧 Try Water Footprint →</span></button>
+  </div>
+</section>
 
-  <script>
-  // ══════════════════════════════════════════════════════
-  //  LANGUAGE SYSTEM
-  // ══════════════════════════════════════════════════════
-  let lang = 'en';
+<!-- ══ FOOTPRINT ══ -->
+<section class="sec" id="s-fp">
+  <div class="sec-head">
+    <h2 id="fp-title">💧 Your Water Footprint</h2>
+    <p id="fp-sub">Select what you eat — see how much water it takes</p>
+  </div>
+  <div class="fp-progress"><div class="fp-fill" id="fpBar" style="width:0%"></div></div>
 
-  const T = {
-    en: {
-      wwd: '🌍 World Water Day 2026 — Where Water Flows, Equality Grows 💧',
-      logo1: 'Water', logo2: 'Day',
-      'tb-home': '🏠 Home', 'tb-siphon': '🔬 Siphoning', 'tb-footprint': '💧 Water Footprint',
-      langBtn: 'عر',
-      'badge-txt': '💧 World Water Day 2026',
-      'hero-title': 'Explore Water Science & Your Impact',
-      'hero-desc': 'Two interactive adventures — discover the science of siphoning and calculate your hidden water footprint.',
-      'card1-title': 'Siphoning Phenomenon',
-      'card1-desc': 'Watch water flow between two pots through a fabric wick. Learn the science behind capillary action & gravity.',
-      'card2-title': 'Water Footprint',
-      'card2-desc': 'Calculate how many liters of water are hidden in your daily food choices. Discover your true water impact.',
-      stag: '🔬 Siphoning Phenomenon',
-      'siphon-title': 'How Does Water Travel Through Fabric?',
-      'siphon-desc': 'Two containers — one filled with water. A fabric wick bridges them. Watch capillary action and gravity work together.',
-      'sci-title': 'The Science Behind Siphoning',
-      'sci-body': 'When a fabric wick bridges two containers, water molecules cling to the fibers (adhesion) and to each other (cohesion). This drives water upward — <strong>capillary action</strong>. Once water passes the peak, <strong>gravity</strong> pulls it into the lower container. This is the <em>open capillary siphon</em>.',
-      'siphon-btn-txt': '▶ Start Siphon',
-      'reset-btn-txt': '↺ Reset',
-      'spd-lbl': 'Speed:',
-      sl1: 'Left Pot', sl2: 'Transferred', sl3: 'Right Pot',
-      su1: '% full', su2: 'mL (est.)', su3: '% full',
-      'steps-title': 'The 4 Stages of Capillary Siphoning',
-      'step1-h': 'Wetting the Wick',
-      'step1-p': 'Water molecules adhere to fabric fibers. Hydrogen bonds between water and cellulose create a strong pull. The wick becomes saturated as water climbs against gravity.',
-      'step2-h': 'Climbing the Wick (Capillary Action)',
-      'step2-p': 'Surface tension and adhesion drive water up through fiber channels. The smaller the gap, the stronger the capillary force — described by the Lucas-Washburn equation: h ∝ √(γ·r·t / η).',
-      'step3-h': 'Passing the Peak',
-      'step3-p': 'Once water reaches the wick\'s highest point, the column on the far side becomes heavier. Gravity now pulls water downward into the second container.',
-      'step4-h': 'Equilibrium',
-      'step4-p': 'Flow continues until both containers reach the same level. At equilibrium, the net gravitational force is zero and the siphon stops.',
-      'eq-title': 'Key Physics',
-      'eq-desc': 'Where γ = surface tension, r = pore radius, η = viscosity, ΔP = pressure difference, ρ = density, h = height, Q = flow rate.',
-      'go-footprint': '💧 Now Calculate Your Water Footprint →',
-      ftag: '💧 Water Footprint Calculator',
-      'fp-title': 'How Much Water Is in Your Food?',
-      'fp-desc': 'Every food requires water to produce. Select what you eat daily to calculate your hidden water footprint.',
-      'fpw-title': 'Discover Your Hidden Water',
-      'fpw-body': 'Did you know 1 kg of beef requires 15,500 liters of water? Or that a cup of coffee hides 140 liters? Let\'s find out your daily water footprint from food.',
-      'fpw-sci': 'What is a Water Footprint?',
-      'fpw-sci-body': 'The water footprint measures all freshwater used in a food\'s entire production — from growing crops to processing. This concept was developed by hydrologist Arjen Hoekstra and is widely used in peer-reviewed research on global water sustainability.',
-      'fpw-start-txt': 'Start the Quiz',
-      catNames: ['🍛 Omani Dishes', '🍔 Fast Food', '🌙 Ramadan Foods', '🍖 Grilled & BBQ', '🍰 Desserts & Snacks', '☕ Beverages'],
-      catFacts: [
-        '💡 Chicken biryani uses less water than grilled meat because of steam cooking!',
-        '🌍 One beef burger requires water equivalent to 23 showers!',
-        '✨ Dates are among the least water-intensive foods — only ~3,000 L/kg!',
-        '🔥 Chicken skewers use roughly half the water of beef skewers.',
-        '🍫 A single chocolate bar can require 2,400 liters — due to cocoa and milk!',
-        '☕ One cup of coffee hides 140 liters — from farming to processing.'
-      ],
-      nextBtn: 'Next →', backBtn: '← Back', calcBtn: '🎯 Calculate My Footprint',
-      'res-title': 'Your Daily Water Footprint',
-      'res-sub': 'liters of virtual water consumed today from food',
-      'res-compare': 'vs. global average (3,800 L/day):',
-      'tips-title': '💡 Tips to Reduce Your Water Footprint',
-      tips: [
-        'Reduce red meat — beef has the highest water footprint of all foods',
-        'Eat more vegetables, legumes, and plant proteins',
-        'Minimize food waste — wasted food = wasted water',
-        'Choose local and seasonal produce',
-        'Drink tap water instead of bottled when safe to do so'
-      ],
-      'restart-btn': '↺ Start Again',
-      'go-siphon': '🔬 Explore Siphoning →',
-      'res-badge': (v, avg) => v < avg*0.5 ? '🌿 Excellent!' : v < avg ? '👍 Below Average' : v < avg*1.5 ? '⚠️ Above Average' : '🔴 Very High',
-      'res-msg': (v) => v < 1000 ? 'Outstanding! Your choices save significant water resources.' : v < 2000 ? 'Good choices — you\'re below the global food footprint average.' : v < 3500 ? 'Moderate footprint. Small diet changes can make a big difference.' : 'High water footprint. Consider incorporating more plant-based meals.',
-      'annual-pools': (n) => `Your annual footprint equals filling ${n} Olympic swimming pools (2.5 million L each).`
-    },
-    ar: {
-      wwd: '🌍 اليوم العالمي للمياه 2026 — حيث تتدفق المياه، يتحقق العدل 💧',
-      logo1: 'يوم', logo2: 'الماء',
-      'tb-home': '🏠 الرئيسية', 'tb-siphon': '🔬 السيفون', 'tb-footprint': '💧 البصمة المائية',
-      langBtn: 'EN',
-      'badge-txt': '💧 اليوم العالمي للمياه 2026',
-      'hero-title': 'استكشف علم المياه وتأثيرك',
-      'hero-desc': 'مغامرتان تفاعليتان — اكتشف علم السيفون واحسب بصمتك المائية الخفية.',
-      'card1-title': 'ظاهرة السيفون',
-      'card1-desc': 'شاهد كيف يتحرك الماء بين وعاءين عبر خيط قماشي. تعلم علم الخاصية الشعرية والجاذبية.',
-      'card2-title': 'البصمة المائية',
-      'card2-desc': 'احسب كم لتراً من الماء مخفي في طعامك اليومي. اكتشف تأثيرك الحقيقي على المياه.',
-      stag: '🔬 ظاهرة السيفون',
-      'siphon-title': 'كيف يتحرك الماء عبر القماش؟',
-      'siphon-desc': 'وعاءان — أحدهما ممتلئ بالماء. خيط قماشي يربطهما. شاهد الخاصية الشعرية والجاذبية معاً.',
-      'sci-title': 'العلم وراء ظاهرة السيفون',
-      'sci-body': 'عندما يربط خيط قماشي بين وعاءين، تتشبث جزيئات الماء بالألياف (الالتصاق) وببعضها البعض (التماسك). هذا يدفع الماء إلى الأعلى — <strong>الخاصية الشعرية</strong>. بمجرد أن يتجاوز الماء قمة الخيط، تسحبه <strong>الجاذبية</strong> إلى الوعاء الآخر.',
-      'siphon-btn-txt': '▶ تشغيل السيفون',
-      'reset-btn-txt': '↺ إعادة تعيين',
-      'spd-lbl': 'السرعة:',
-      sl1: 'الوعاء الأيسر', sl2: 'المنقول', sl3: 'الوعاء الأيمن',
-      su1: '% ممتلئ', su2: 'مل (تقريبي)', su3: '% ممتلئ',
-      'steps-title': 'المراحل الأربع للسيفون الشعري',
-      'step1-h': 'ترطيب الخيط',
-      'step1-p': 'تلتصق جزيئات الماء بألياف القماش. تخلق روابط الهيدروجين بين الماء والسليلوز قوة شد قوية. يصبح الخيط مشبعاً بالماء.',
-      'step2-h': 'تسلق الخيط (الخاصية الشعرية)',
-      'step2-p': 'تدفع قوة الشد السطحي والالتصاق الماء عبر قنوات الألياف الدقيقة. كلما صغرت الفجوات، زادت قوة الشعرية.',
-      'step3-h': 'تجاوز القمة',
-      'step3-p': 'بمجرد وصول الماء إلى أعلى نقطة في الخيط، يصبح العمود على الجانب الآخر أثقل. الجاذبية الآن تسحب الماء إلى الوعاء الثاني.',
-      'step4-h': 'التوازن',
-      'step4-p': 'يستمر التدفق حتى يصل كلا الوعاءين إلى نفس المستوى. عند التوازن، تصبح القوة الجاذبية الصافية صفراً ويتوقف السيفون.',
-      'eq-title': 'الفيزياء الأساسية',
-      'eq-desc': 'حيث γ = الشد السطحي، r = نصف قطر المسام، η = اللزوجة، ΔP = فرق الضغط، ρ = كثافة الماء، h = الارتفاع، Q = معدل التدفق.',
-      'go-footprint': '💧 احسب بصمتك المائية الآن ←',
-      ftag: '💧 حاسبة البصمة المائية',
-      'fp-title': 'كم كمية المياه في طعامك؟',
-      'fp-desc': 'كل طعام يحتاج ماءً لإنتاجه. اختر ما تأكله يومياً لحساب بصمتك المائية الخفية.',
-      'fpw-title': 'اكتشف مياهك الخفية',
-      'fpw-body': 'هل تعلم أن إنتاج 1 كجم لحم بقر يستهلك 15,500 لتر ماء؟ أو أن فنجان قهوة يخفي 140 لتراً؟ لنكتشف بصمتك المائية اليومية من الطعام.',
-      'fpw-sci': 'ما هي البصمة المائية؟',
-      'fpw-sci-body': 'تقيس البصمة المائية جميع المياه العذبة المستخدمة في عملية إنتاج الغذاء بالكامل — من زراعة المحاصيل إلى التصنيع. طوّر هذا المفهوم عالم الهيدرولوجيا أرجن هوكسترا وهو مستخدم على نطاق واسع في الأبحاث المحكّمة.',
-      'fpw-start-txt': 'ابدأ الاستبيان',
-      catNames: ['🍛 الأطباق العمانية', '🍔 الوجبات السريعة', '🌙 أكلات رمضانية', '🍖 المشاوي', '🍰 الحلى والسناكس', '☕ المشروبات'],
-      catFacts: [
-        '💡 البرياني يحتاج ماءً أقل من اللحم المشوي لأنه يستخدم البخار!',
-        '🌍 برجر واحد يستهلك ماء يكفي لـ 23 دش استحمام!',
-        '✨ التمر من أقل الأطعمة استهلاكاً للماء — فقط 3000 لتر للكيلو!',
-        '🔥 مشاكيك الدجاج تستهلك ماءً أقل بنصف من مشاكيك اللحم!',
-        '🍫 لوح شوكولاتة صغير يستهلك 2400 لتر بسبب الكاكاو والحليب!',
-        '☕ فنجان قهوة يخفي 140 لتراً — من الزراعة حتى التصنيع.'
-      ],
-      nextBtn: 'التالي ←', backBtn: '→ رجوع', calcBtn: '🎯 احسب بصمتي',
-      'res-title': 'بصمتك المائية اليومية',
-      'res-sub': 'لتر من الماء الافتراضي المستهلك اليوم من الطعام',
-      'res-compare': 'مقارنة بالمتوسط العالمي (3,800 لتر/يوم):',
-      'tips-title': '💡 نصائح لتقليل بصمتك المائية',
-      tips: [
-        'قلل استهلاك اللحوم الحمراء — لها أعلى بصمة مائية',
-        'أكثر من الخضروات والبقوليات والبروتين النباتي',
-        'قلل هدر الطعام — الطعام المهدر = ماء مهدر',
-        'اختر المنتجات المحلية والموسمية',
-        'اشرب ماء الصنبور بدلاً من المعبأ عند الأمان'
-      ],
-      'restart-btn': '↺ ابدأ من جديد',
-      'go-siphon': '🔬 استكشف السيفون ←',
-      'res-badge': (v, avg) => v < avg*0.5 ? '🌿 ممتاز!' : v < avg ? '👍 أقل من المتوسط' : v < avg*1.5 ? '⚠️ فوق المتوسط' : '🔴 مرتفع جداً',
-      'res-msg': (v) => v < 1000 ? 'رائع! خياراتك توفر موارد مائية قيّمة.' : v < 2000 ? 'خيارات جيدة — أنت أقل من متوسط البصمة الغذائية العالمية.' : v < 3500 ? 'بصمة متوسطة. تغييرات صغيرة في النظام الغذائي تُحدث فرقاً.' : 'بصمة مائية عالية. فكر في إضافة المزيد من الوجبات النباتية.',
-      'annual-pools': (n) => `بصمتك السنوية تعادل ملء ${n} حمام سباحة أولمبي (2.5 مليون لتر لكل منها).`
+  <!-- Welcome -->
+  <div id="fp-w" class="fp-welcome">
+    <span class="big">💧</span>
+    <h2 id="fpw-t">How much water is hidden in your food?</h2>
+    <p id="fpw-p">Pick what you eat. We'll show you the real water cost — and how to save it.</p>
+    <div class="fact-trio">
+      <div class="ftile"><div class="num" id="fn1">15,500 L</div><div class="lbl" id="fl1">1 kg Beef</div></div>
+      <div class="ftile"><div class="num" id="fn2">140 L</div><div class="lbl" id="fl2">1 Coffee</div></div>
+      <div class="ftile"><div class="num" id="fn3">3,800 L</div><div class="lbl" id="fl3">World avg/day</div></div>
+    </div>
+    <button class="btn btn-green" onclick="startQ()"><span id="fpw-btn">🚀 Start</span></button>
+  </div>
+
+  <div id="fp-q" style="display:none"></div>
+  <div id="fp-r" style="display:none"></div>
+</section>
+
+<script>
+// ══ LANG ══
+let lang='en';
+const TR={
+  en:{
+    wwd:'🌍 World Water Day 2026 — Where Water Flows, Equality Grows 💧',
+    langBtn:'عر',
+    't-home':'Home','t-siphon':'Siphon','t-fp':'Footprint',
+    'h-title':'Explore Water 💧','h-sub':'Two fun science adventures for World Water Day',
+    'h-c1':'Siphoning','h-c1s':'Watch water jump between two pots through a fabric wick',
+    'h-c2':'Water Footprint','h-c2s':'How much water hides in your daily food?',
+    'si-title':'🔬 The Siphoning Phenomenon','si-sub':'Water climbs up through fabric — then gravity pulls it down',
+    fc1:'<strong>Fabric wick</strong> = tiny tubes between fibers. Water clings and travels up — <strong>capillary action</strong>',
+    fc2:'Once water reaches the <strong>top of the wick</strong>, gravity pulls it into the other pot',
+    'si-btxt':'▶ Start','si-rtxt':'↺ Reset','si-spd':'Speed',
+    sl1:'Pot A',sl2:'Transferred',sl3:'Pot B',su1:'% full',su2:'mL',su3:'% full',
+    s1h:'Wick gets wet',s1p:'Water molecules stick to fabric fibers (adhesion)',
+    s2h:'Water climbs up',s2p:'Capillary action pulls water upward against gravity',
+    s3h:'Over the top',s3p:'At the peak, gravity wins — water falls into Pot B',
+    s4h:'Equal levels',s4p:'Flow stops when both pots reach the same level',
+    'si-go':'💧 Try Water Footprint →',
+    'fp-title':'💧 Your Water Footprint','fp-sub':'Select what you eat — see how much water it takes',
+    'fpw-t':'How much water is hidden in your food?',
+    'fpw-p':'Pick what you eat. We\'ll show you the real water cost — and how to save it.',
+    fn1:'15,500 L',fl1:'1 kg Beef',fn2:'140 L',fl2:'1 Coffee',fn3:'3,800 L',fl3:'World avg/day',
+    'fpw-btn':'🚀 Start',
+    catN:['🍛 Omani Dishes','🍔 Fast Food','🌙 Ramadan Foods','🍖 Grilled & BBQ','🍰 Sweets & Snacks','☕ Drinks'],
+    catF:['💡 Biryani uses less water than grilled meat — it steams!','🌍 1 beef burger = 23 showers worth of water','✨ Dates are among the least water-intensive foods','🔥 Chicken skewers use half the water of beef','🍫 One chocolate bar = 2,400 L because of cocoa & milk','☕ One coffee cup hides 140 L of water'],
+    nextBtn:'Next →',backBtn:'← Back',calcBtn:'🎯 Calculate!',
+    'rt':'Your Daily Water Footprint','rs':'liters of hidden water in your food today',
+    'rc':'vs. global average (3,800 L/day):',
+    'tip-title':'💡 Save Water',
+    tips:[['🥩','Less red meat — highest footprint'],['🥦','More veggies & legumes'],['♻️','Don\'t waste food'],['🛒','Buy local & seasonal'],['🚰','Tap water > bottled']],
+    rbadge:(v)=>v<1000?'🌿 Excellent!':v<2000?'👍 Below Average':v<3800?'⚠️ Above Average':'🔴 Very High',
+    rmsg:(v)=>v<1000?'Amazing — your diet saves a lot of water!':v<2000?'Good choices! You\'re below the global average.':v<3800?'Try swapping some meat for plants.':'Consider more plant-based meals.',
+    rstrt:'↺ Try Again','r-go':'🔬 Explore Siphoning',
+    pools:(n)=>`= ${n} Olympic pools per year 🏊`,
+    showers:(n)=>`= ${n} showers per day 🚿`,
+    days:(n)=>`= ${n} days of drinking water 💧`,
+  },
+  ar:{
+    wwd:'🌍 اليوم العالمي للمياه 2026 — حيث تتدفق المياه يتحقق العدل 💧',
+    langBtn:'EN',
+    't-home':'الرئيسية','t-siphon':'السيفون','t-fp':'البصمة',
+    'h-title':'استكشف الماء 💧','h-sub':'مغامرتان علميتان في يوم الماء العالمي',
+    'h-c1':'ظاهرة السيفون','h-c1s':'شاهد الماء ينتقل بين وعاءين عبر خيط قماشي',
+    'h-c2':'البصمة المائية','h-c2s':'كم من الماء يختبئ في طعامك اليومي؟',
+    'si-title':'🔬 ظاهرة السيفون','si-sub':'الماء يصعد عبر القماش — ثم تسحبه الجاذبية',
+    fc1:'<strong>الخيط القماشي</strong> = أنابيب دقيقة بين الألياف. الماء يتشبث بها ويصعد — <strong>الخاصية الشعرية</strong>',
+    fc2:'حين يصل الماء لـ<strong>قمة الخيط</strong>، تسحبه الجاذبية إلى الوعاء الآخر',
+    'si-btxt':'▶ تشغيل','si-rtxt':'↺ إعادة','si-spd':'السرعة',
+    sl1:'الوعاء أ',sl2:'المنقول',sl3:'الوعاء ب',su1:'% ممتلئ',su2:'مل',su3:'% ممتلئ',
+    s1h:'ترطيب الخيط',s1p:'جزيئات الماء تتشبث بالألياف (الالتصاق)',
+    s2h:'الصعود',s2p:'الخاصية الشعرية ترفع الماء ضد الجاذبية',
+    s3h:'تجاوز القمة',s3p:'عند القمة، تنتصر الجاذبية — الماء يسقط في الوعاء ب',
+    s4h:'التوازن',s4p:'يتوقف التدفق حين يتساوى المستويان',
+    'si-go':'💧 جرّب البصمة المائية ←',
+    'fp-title':'💧 بصمتك المائية','fp-sub':'اختر ما تأكله — اكتشف كمية الماء خلفه',
+    'fpw-t':'كم من الماء يختبئ في طعامك؟',
+    'fpw-p':'اختر طعامك. سنريك التكلفة المائية الحقيقية — وكيف توفرها.',
+    fn1:'15,500 ل',fl1:'1 كجم لحم',fn2:'140 ل',fl2:'قهوة',fn3:'3,800 ل',fl3:'المتوسط العالمي/يوم',
+    'fpw-btn':'🚀 ابدأ',
+    catN:['🍛 الأطباق العمانية','🍔 الوجبات السريعة','🌙 أكلات رمضانية','🍖 المشاوي','🍰 الحلى والسناكس','☕ المشروبات'],
+    catF:['💡 البرياني يحتاج ماءً أقل من الشواء — يستخدم البخار!','🌍 برجر واحد = ماء 23 دش استحمام','✨ التمر من أقل الأطعمة استهلاكاً للماء','🔥 مشاكيك الدجاج = نصف ماء مشاكيك اللحم','🍫 لوحة شوكولاتة = 2,400 لتر بسبب الكاكاو','☕ فنجان قهوة يخفي 140 لتراً'],
+    nextBtn:'التالي ←',backBtn:'→ رجوع',calcBtn:'🎯 احسب!',
+    'rt':'بصمتك المائية اليومية','rs':'لتر من الماء الخفي في طعامك اليوم',
+    'rc':'مقارنة بالمتوسط العالمي (3,800 لتر/يوم):',
+    'tip-title':'💡 وفّر الماء',
+    tips:[['🥩','قلل اللحوم الحمراء'],['🥦','أكثر من الخضار والبقوليات'],['♻️','لا تهدر الطعام'],['🛒','اشتر محلي وموسمي'],['🚰','ماء الصنبور أفضل من المعبأ']],
+    rbadge:(v)=>v<1000?'🌿 ممتاز!':v<2000?'👍 أقل من المتوسط':v<3800?'⚠️ فوق المتوسط':'🔴 مرتفع جداً',
+    rmsg:(v)=>v<1000?'رائع — نظامك الغذائي يوفر الكثير من الماء!':v<2000?'خيارات جيدة! أنت أقل من المتوسط العالمي.':v<3800?'جرب استبدال بعض اللحوم بالنباتات.':'فكر في المزيد من الوجبات النباتية.',
+    rstrt:'↺ ابدأ مجدداً','r-go':'🔬 استكشف السيفون',
+    pools:(n)=>`= ${n} حمام سباحة أولمبي سنوياً 🏊`,
+    showers:(n)=>`= ${n} دش يومياً 🚿`,
+    days:(n)=>`= ${n} يوم من مياه الشرب 💧`,
+  }
+};
+function t(k){return TR[lang][k]??TR.en[k]??k}
+
+function applyLang(){
+  document.documentElement.dir=lang==='ar'?'rtl':'ltr';
+  document.documentElement.lang=lang;
+  const ids=['wwd','t-home','t-siphon','t-fp','h-title','h-sub','h-c1','h-c1s','h-c2','h-c2s',
+    'si-title','si-sub','si-btxt','si-rtxt','si-spd','sl1','sl2','sl3','su1','su2','su3',
+    's1h','s1p','s2h','s2p','s3h','s3p','s4h','s4p','si-go',
+    'fp-title','fp-sub','fpw-t','fpw-p','fpw-btn','fn1','fl1','fn2','fl2','fn3','fl3'];
+  ids.forEach(id=>{
+    const el=document.getElementById(id);if(!el)return;
+    const v=t(id);
+    if(['fc1','fc2'].includes(id))el.innerHTML=v;
+    else el.textContent=v;
+  });
+  // fc1 fc2 are p tags inside .fact-chip
+  const fc=[document.querySelector('#s-siphon .fact-chip:nth-child(2) p'),
+            document.querySelector('#s-siphon .fact-chip:nth-child(3) p')];
+  if(fc[0])fc[0].innerHTML=t('fc1');
+  if(fc[1])fc[1].innerHTML=t('fc2');
+  document.getElementById('langBtn').textContent=t('langBtn');
+  if(quizActive)renderQ();
+  if(resShown)renderResult();
+}
+function toggleLang(){lang=lang==='en'?'ar':'en';applyLang()}
+
+// ══ THEME ══
+let theme=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';
+document.documentElement.setAttribute('data-theme',theme);
+function toggleTheme(){theme=theme==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',theme)}
+
+// ══ TABS ══
+function goTab(name){
+  ['home','siphon','fp'].forEach(n=>{
+    document.getElementById('s-'+n).classList.toggle('on',n===name);
+    document.getElementById('t'+n[0]==='t'?'h':'t'+n[0]).setAttribute('data-a',n===name?'t':'f');
+  });
+  // fix tab active state
+  document.getElementById('th').setAttribute('data-a',name==='home'?'t':'f');
+  document.getElementById('ts').setAttribute('data-a',name==='siphon'?'t':'f');
+  document.getElementById('tf').setAttribute('data-a',name==='fp'?'t':'f');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ══ SIPHON CANVAS ══
+const cv=document.getElementById('siphonCanvas');
+const cx=cv.getContext('2d');
+let running=false,leftL=1,rightL=0,wickP=0,wickDone=false,spd=1.5,xfer=0,rafId;
+
+function resize(){
+  cv.width=cv.clientWidth;cv.height=cv.clientHeight||280;
+}
+
+function setSpd(v){spd=+v;document.getElementById('spdv').textContent=v+'×'}
+
+function draw(){
+  const W=cv.width,H=cv.height,dark=theme==='dark';
+  cx.clearRect(0,0,W,H);
+  const bg=dark?'#051a2e':'#daf0ff';
+  cx.fillStyle=bg;cx.fillRect(0,0,W,H);
+
+  const PW=W*.2,PH=H*.55,PY=H*.28;
+  const LX=W*.1,RX=W-W*.1-PW;
+  const PK=H*.08; // peak Y
+  const r=10;
+
+  // Draw rounded pot
+  function pot(x,level,label,pct){
+    // container
+    cx.save();
+    cx.beginPath();cx.roundRect(x,PY,PW,PH,r);
+    cx.fillStyle=dark?'#1a4060':'#b3d9f0';cx.fill();
+    cx.strokeStyle=dark?'#48cae4':'#0077b6';cx.lineWidth=2;cx.stroke();
+    cx.restore();
+    // water
+    const wH=PH*.88*level;const wY=PY+PH-wH;
+    if(wH>1){
+      cx.save();
+      cx.beginPath();cx.roundRect(x+2,wY,PW-4,wH,[0,0,r-2,r-2]);
+      const g=cx.createLinearGradient(0,wY,0,wY+wH);
+      g.addColorStop(0,dark?'#48cae4':'#00b4d8');
+      g.addColorStop(1,dark?'#0096c7':'#0077b6');
+      cx.fillStyle=g;cx.fill();
+      // shimmer
+      const g2=cx.createLinearGradient(0,wY,0,wY+wH*.4);
+      g2.addColorStop(0,'rgba(255,255,255,0.25)');g2.addColorStop(1,'rgba(255,255,255,0)');
+      cx.fillStyle=g2;cx.fill();
+      cx.restore();
     }
-  };
-
-  function t(key) { return T[lang][key] || T['en'][key] || key; }
-
-  function applyLang() {
-    const ids = ['wwd-txt','logo1','logo2','tb-home','tb-siphon','tb-footprint','badge-txt',
-      'hero-title','hero-desc','card1-title','card1-desc','card2-title','card2-desc',
-      'stag','siphon-title','siphon-desc','sci-title','sci-body',
-      'siphon-btn-txt','reset-btn-txt','spd-lbl','sl1','sl2','sl3','su1','su2','su3',
-      'steps-title','step1-h','step1-p','step2-h','step2-p','step3-h','step3-p','step4-h','step4-p',
-      'eq-title','eq-desc','go-footprint','ftag','fp-title','fp-desc',
-      'fpw-title','fpw-body','fpw-sci','fpw-sci-body','fpw-start-txt'];
-
-    ids.forEach(id => {
-      const el = document.getElementById(id);
-      if (!el) return;
-      const val = t(id);
-      if (id === 'sci-body') el.innerHTML = val;
-      else el.textContent = val;
-    });
-    document.getElementById('langBtn').textContent = t('langBtn');
-    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-    document.documentElement.lang = lang;
+    // label
+    cx.save();
+    cx.font=`700 13px Plus Jakarta Sans,sans-serif`;
+    cx.fillStyle=dark?'#7ab4cc':'#4a6b82';cx.textAlign='center';
+    cx.fillText(label,x+PW/2,PY-8);
+    cx.font=`900 15px Plus Jakarta Sans,sans-serif`;
+    cx.fillStyle=dark?'#90e0ef':'#0077b6';
+    if(level>0.02)cx.fillText(Math.round(level*100)+'%',x+PW/2,wY-7);
+    cx.restore();
   }
 
-  function toggleLang() {
-    lang = lang === 'en' ? 'ar' : 'en';
-    applyLang();
-    if (quizActive) renderQuizScreen();
-    if (resultsShown) renderResults();
+  pot(LX,leftL,lang==='ar'?'وعاء أ':'Pot A');
+  pot(RX,rightL,lang==='ar'?'وعاء ب':'Pot B');
+
+  // Wick bezier
+  const wSX=LX+PW*.5,wSY=PY+PH*.12;
+  const wEX=RX+PW*.5,wEY=PY+PH*.12;
+  const wMX=W*.5,wMY=PK;
+  const c1x=wMX-50,c2x=wMX+50;
+
+  function wickPath(){
+    cx.beginPath();
+    cx.moveTo(wSX,wSY);
+    cx.bezierCurveTo(c1x,wMY,c2x,wMY,wEX,wEY);
   }
 
-  // ══════════════════════════════════════════════════════
-  //  THEME
-  // ══════════════════════════════════════════════════════
-  const html = document.documentElement;
-  let theme = window.matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light';
-  html.setAttribute('data-theme', theme);
+  // dry wick
+  wickPath();
+  cx.lineWidth=9;cx.lineCap='round';
+  cx.strokeStyle=dark?'#c8a96e':'#9c6d14';cx.stroke();
 
-  function toggleTheme() {
-    theme = theme === 'dark' ? 'light' : 'dark';
-    html.setAttribute('data-theme', theme);
+  // wet overlay
+  if(wickP>0){
+    const tot=estimateLen(wSX,wSY,c1x,wMY,c2x,wMY,wEX,wEY);
+    const wetL=tot*(wickDone?1:wickP);
+    wickPath();
+    cx.setLineDash([wetL,tot+2]);
+    cx.lineWidth=9;cx.lineCap='round';
+    cx.strokeStyle=dark?'#48cae4':'#0096c7';cx.stroke();
+    cx.setLineDash([]);
   }
 
-  // ══════════════════════════════════════════════════════
-  //  TABS
-  // ══════════════════════════════════════════════════════
-  function showTab(name) {
-    ['home','siphon','footprint'].forEach(n => {
-      document.getElementById('sec-'+n).classList.toggle('active', n===name);
-      document.getElementById('tab-'+n).setAttribute('data-active', n===name);
-    });
-    window.scrollTo({top:0, behavior:'smooth'});
-  }
-
-  // ══════════════════════════════════════════════════════
-  //  BUBBLES
-  // ══════════════════════════════════════════════════════
-  function makeBubbles() {
-    const wrap = document.getElementById('bubbles');
-    for (let i = 0; i < 14; i++) {
-      const b = document.createElement('div');
-      b.className = 'bubble';
-      const size = 6 + Math.random() * 18;
-      b.style.cssText = `left:${Math.random()*100}%;width:${size}px;height:${size}px;animation-duration:${8+Math.random()*14}s;animation-delay:${Math.random()*12}s`;
-      wrap.appendChild(b);
-    }
-  }
-  makeBubbles();
-
-  // ══════════════════════════════════════════════════════
-  //  SIPHON SIMULATOR
-  // ══════════════════════════════════════════════════════
-  const canvas = document.getElementById('siphonCanvas');
-  const ctx2 = canvas.getContext('2d');
-  let animId = null;
-  let siphonRunning = false;
-  let leftLevel = 1.0; // 0-1
-  let rightLevel = 0.0;
-  let wickProgress = 0; // 0-1, water front in wick
-  let wickFull = false;
-  let speed = 1.5;
-  let transferRate = 0;
-  let totalTransferred = 0;
-
-  function resizeCanvas() {
-    const wrap = canvas.parentElement;
-    canvas.width = wrap.clientWidth;
-    canvas.height = wrap.clientHeight;
-  }
-
-  function updateSpeed(v) {
-    speed = parseFloat(v);
-    document.getElementById('speedVal').textContent = v + '×';
-  }
-
-  function lerp(a,b,t) { return a + (b-a)*t; }
-
-  function drawSiphon() {
-    const W = canvas.width, H = canvas.height;
-    ctx2.clearRect(0, 0, W, H);
-
-    const potW = W * 0.22;
-    const potH = H * 0.55;
-    const potY = H * 0.3;
-    const leftX = W * 0.08;
-    const rightX = W - W * 0.08 - potW;
-    const wickPeakY = H * 0.1;
-    const wickThick = 8;
-    const cornerR = 10;
-
-    const isDark = html.getAttribute('data-theme') === 'dark';
-    const potColor = isDark ? '#1a4060' : '#b3d9f0';
-    const potBorder = isDark ? '#48cae4' : '#0077b6';
-    const waterColor = isDark ? '#0096c7' : '#00b4d8';
-    const waterDark = isDark ? '#023e8a' : '#0077b6';
-    const wickColor = isDark ? '#c8a96e' : '#8b6914';
-    const wickWetColor = isDark ? '#48cae4' : '#0077b6';
-
-    // ── POT LEFT ──
-    ctx2.save();
-    ctx2.beginPath();
-    ctx2.roundRect(leftX, potY, potW, potH, cornerR);
-    ctx2.fillStyle = potColor;
-    ctx2.fill();
-    ctx2.strokeStyle = potBorder;
-    ctx2.lineWidth = 2;
-    ctx2.stroke();
-    ctx2.restore();
-
-    // Left water
-    const leftWaterH = potH * 0.9 * leftLevel;
-    const leftWaterY = potY + potH - leftWaterH;
-    ctx2.save();
-    ctx2.beginPath();
-    ctx2.roundRect(leftX+2, leftWaterY, potW-4, leftWaterH, [0,0,cornerR-2,cornerR-2]);
-    // animated surface ripple
-    const t = Date.now()*0.002;
-    ctx2.fillStyle = waterColor;
-    ctx2.fill();
-    // ripple shimmer
-    const grad = ctx2.createLinearGradient(0, leftWaterY, 0, leftWaterY+leftWaterH);
-    grad.addColorStop(0, 'rgba(144,224,239,0.35)');
-    grad.addColorStop(1, 'rgba(0,150,199,0.0)');
-    ctx2.fillStyle = grad;
-    ctx2.fill();
-    ctx2.restore();
-
-    // ── POT RIGHT ──
-    ctx2.save();
-    ctx2.beginPath();
-    ctx2.roundRect(rightX, potY, potW, potH, cornerR);
-    ctx2.fillStyle = potColor;
-    ctx2.fill();
-    ctx2.strokeStyle = potBorder;
-    ctx2.lineWidth = 2;
-    ctx2.stroke();
-    ctx2.restore();
-
-    // Right water
-    const rightWaterH = potH * 0.9 * rightLevel;
-    const rightWaterY = potY + potH - rightWaterH;
-    ctx2.save();
-    ctx2.beginPath();
-    if (rightWaterH > 0) {
-      ctx2.roundRect(rightX+2, rightWaterY, potW-4, rightWaterH, [0,0,cornerR-2,cornerR-2]);
-      ctx2.fillStyle = waterColor;
-      ctx2.fill();
-      const grad2 = ctx2.createLinearGradient(0, rightWaterY, 0, rightWaterY+rightWaterH);
-      grad2.addColorStop(0, 'rgba(144,224,239,0.35)');
-      grad2.addColorStop(1, 'rgba(0,150,199,0.0)');
-      ctx2.fillStyle = grad2;
-      ctx2.fill();
-    }
-    ctx2.restore();
-
-    // ── WICK PATH ──
-    const wickStartX = leftX + potW * 0.5;
-    const wickStartY = potY + potH * 0.15;
-    const wickMidX = W * 0.5;
-    const wickEndX = rightX + potW * 0.5;
-    const wickEndY = potY + potH * 0.15;
-
-    // Build wick path points
-    const wickPts = [
-      {x: wickStartX, y: wickStartY},
-      {x: wickMidX - 30, y: wickPeakY + 10},
-      {x: wickMidX, y: wickPeakY},
-      {x: wickMidX + 30, y: wickPeakY + 10},
-      {x: wickEndX, y: wickEndY}
-    ];
-
-    // Draw dry wick
-    ctx2.save();
-    ctx2.beginPath();
-    ctx2.moveTo(wickPts[0].x, wickPts[0].y);
-    ctx2.bezierCurveTo(wickPts[1].x, wickPts[1].y, wickPts[3].x, wickPts[3].y, wickPts[4].x, wickPts[4].y);
-    ctx2.lineWidth = wickThick;
-    ctx2.lineCap = 'round';
-    ctx2.strokeStyle = wickColor;
-    ctx2.stroke();
-    ctx2.restore();
-
-    // Draw wet wick overlay (progress)
-    if (wickProgress > 0 || wickFull) {
-      const prog = wickFull ? 1 : wickProgress;
-      ctx2.save();
-      ctx2.beginPath();
-      ctx2.moveTo(wickPts[0].x, wickPts[0].y);
-      ctx2.bezierCurveTo(wickPts[1].x, wickPts[1].y, wickPts[3].x, wickPts[3].y, wickPts[4].x, wickPts[4].y);
-      ctx2.lineWidth = wickThick;
-      ctx2.lineCap = 'round';
-      ctx2.strokeStyle = 'transparent';
-      ctx2.stroke();
-      // Use dashOffset trick for partial wick
-      const totalLen = estimateBezierLen(wickPts);
-      const wetLen = totalLen * prog;
-      ctx2.beginPath();
-      ctx2.moveTo(wickPts[0].x, wickPts[0].y);
-      ctx2.bezierCurveTo(wickPts[1].x, wickPts[1].y, wickPts[3].x, wickPts[3].y, wickPts[4].x, wickPts[4].y);
-      ctx2.setLineDash([wetLen, totalLen]);
-      ctx2.lineWidth = wickThick;
-      ctx2.lineCap = 'round';
-      ctx2.strokeStyle = wickWetColor;
-      ctx2.stroke();
-      ctx2.setLineDash([]);
-      ctx2.restore();
-    }
-
-    // ── LABELS ──
-    const labelStyle = isDark ? '#7ab4cc' : '#4a6b82';
-    ctx2.font = `bold 12px Plus Jakarta Sans, sans-serif`;
-    ctx2.fillStyle = labelStyle;
-    ctx2.textAlign = 'center';
-    ctx2.fillText('Pot A', leftX + potW/2, potY - 8);
-    ctx2.fillText('Pot B', rightX + potW/2, potY - 8);
-
-    // Wick label
-    ctx2.save();
-    ctx2.font = `600 11px Plus Jakarta Sans, sans-serif`;
-    ctx2.fillStyle = isDark ? '#c8a96e' : '#8b6914';
-    ctx2.textAlign = 'center';
-    ctx2.fillText(lang==='ar'?'خيط قماشي':'Fabric Wick', wickMidX, wickPeakY - 10);
-    ctx2.restore();
-
-    // Water level % labels
-    ctx2.save();
-    ctx2.font = `800 14px Plus Jakarta Sans, sans-serif`;
-    ctx2.fillStyle = isDark ? '#90e0ef' : '#0077b6';
-    ctx2.textAlign = 'center';
-    ctx2.fillText(Math.round(leftLevel*100) + '%', leftX + potW/2, leftWaterY - 6);
-    if (rightLevel > 0.03) ctx2.fillText(Math.round(rightLevel*100) + '%', rightX + potW/2, rightWaterY - 6);
-    ctx2.restore();
-
-    // Water drop animation (flowing)
-    if (wickFull && siphonRunning && leftLevel > rightLevel + 0.01) {
-      const drops = 3;
-      for (let i = 0; i < drops; i++) {
-        const phase = ((Date.now()*0.001 * speed + i/drops) % 1);
-        // Interpolate along bezier
-        const dp = getBezierPoint(wickPts, phase);
-        ctx2.save();
-        ctx2.beginPath();
-        ctx2.arc(dp.x, dp.y, 4, 0, Math.PI*2);
-        ctx2.fillStyle = isDark ? '#caf0f8' : '#0096c7';
-        ctx2.fill();
-        ctx2.restore();
-      }
+  // Flowing drops
+  if(wickDone&&running&&leftL>rightL+.01){
+    for(let i=0;i<3;i++){
+      const ph=((Date.now()*.001*spd+i/3)%1);
+      const p=bezierPt(ph,wSX,wSY,c1x,wMY,c2x,wMY,wEX,wEY);
+      cx.save();cx.beginPath();cx.arc(p.x,p.y,4.5,0,Math.PI*2);
+      cx.fillStyle=dark?'#caf0f8':'white';cx.fill();
+      cx.strokeStyle=dark?'#48cae4':'#0096c7';cx.lineWidth=1.5;cx.stroke();
+      cx.restore();
     }
   }
 
-  function estimateBezierLen(pts) {
-    let len = 0, prev = pts[0];
-    for (let i=1;i<=50;i++) {
-      const t2 = i/50;
-      const p = getBezierPoint(pts, t2);
-      len += Math.hypot(p.x-prev.x, p.y-prev.y);
-      prev = p;
-    }
-    return len;
+  // Wick label
+  cx.save();cx.font=`600 12px Plus Jakarta Sans,sans-serif`;
+  cx.fillStyle=dark?'#c8a96e':'#9c6d14';cx.textAlign='center';
+  cx.fillText(lang==='ar'?'خيط قماشي':'Fabric Wick',wMX,wMY-12);cx.restore();
+
+  // Arrows if running & wick full
+  if(wickDone&&running&&leftL>rightL+.01){
+    drawArrow(cx,wSX+4,wSY-18,wSX+4,wSY-8,dark?'#48cae4':'#0096c7');
   }
+}
 
-  function getBezierPoint(pts, t2) {
-    const p0=pts[0], p1=pts[1], p2=pts[3], p3=pts[4];
-    const mt = 1-t2;
-    return {
-      x: mt*mt*mt*p0.x + 3*mt*mt*t2*p1.x + 3*mt*t2*t2*p2.x + t2*t2*t2*p3.x,
-      y: mt*mt*mt*p0.y + 3*mt*mt*t2*p1.y + 3*mt*t2*t2*p2.y + t2*t2*t2*p3.y
-    };
+function drawArrow(ctx,x1,y1,x2,y2,color){
+  ctx.save();ctx.strokeStyle=color;ctx.fillStyle=color;ctx.lineWidth=2;
+  ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();
+  const a=Math.atan2(y2-y1,x2-x1);
+  ctx.beginPath();ctx.moveTo(x2,y2);
+  ctx.lineTo(x2-7*Math.cos(a-0.4),y2-7*Math.sin(a-0.4));
+  ctx.lineTo(x2-7*Math.cos(a+0.4),y2-7*Math.sin(a+0.4));
+  ctx.closePath();ctx.fill();ctx.restore();
+}
+
+function estimateLen(x1,y1,c1x,c1y,c2x,c2y,x2,y2){
+  let l=0,px=x1,py=y1;
+  for(let i=1;i<=60;i++){
+    const p=bezierPt(i/60,x1,y1,c1x,c1y,c2x,c2y,x2,y2);
+    l+=Math.hypot(p.x-px,p.y-py);px=p.x;py=p.y;
   }
+  return l;
+}
+function bezierPt(t,x1,y1,c1x,c1y,c2x,c2y,x2,y2){
+  const m=1-t;
+  return{x:m*m*m*x1+3*m*m*t*c1x+3*m*t*t*c2x+t*t*t*x2,
+         y:m*m*m*y1+3*m*m*t*c1y+3*m*t*t*c2y+t*t*t*y2};
+}
 
-  function updateSiphonPhysics() {
-    if (!siphonRunning) return;
-    const dt = 0.016 * speed;
-
-    if (!wickFull) {
-      wickProgress += dt * 0.12;
-      if (wickProgress >= 1) { wickProgress = 1; wickFull = true; }
-      return;
-    }
-
-    // Transfer rate proportional to height difference (gravity)
-    const diff = leftLevel - rightLevel;
-    if (diff > 0.005 && leftLevel > 0.01) {
-      const rate = diff * 0.018 * speed;
-      leftLevel = Math.max(0, leftLevel - rate);
-      rightLevel = Math.min(1, rightLevel + rate * 0.95); // small evaporation
-      totalTransferred += rate * 100 * 5; // rough mL estimation
-      transferRate = rate;
-    } else {
-      // Equilibrium reached
-      siphonRunning = false;
-      document.getElementById('siphon-btn-txt').textContent = lang==='ar'?'▶ تشغيل السيفون':'▶ Start Siphon';
-    }
-
-    // Update stats
-    document.getElementById('sv-left').textContent = Math.round(leftLevel*100);
-    document.getElementById('sv-right').textContent = Math.round(rightLevel*100);
-    document.getElementById('sv-transfer').textContent = Math.round(totalTransferred);
+function physics(){
+  if(!running)return;
+  const dt=.016*spd;
+  if(!wickDone){wickP+=dt*.14;if(wickP>=1){wickP=1;wickDone=true;}return;}
+  const diff=leftL-rightL;
+  if(diff>.005&&leftL>.01){
+    const rate=diff*.018*spd;
+    leftL=Math.max(0,leftL-rate);
+    rightL=Math.min(1,rightL+rate*.95);
+    xfer+=rate*100*5;
+  } else {
+    running=false;
+    document.getElementById('si-btxt').textContent=t('si-btxt');
   }
+  document.getElementById('sv1').textContent=Math.round(leftL*100);
+  document.getElementById('sv2').textContent=Math.round(xfer);
+  document.getElementById('sv3').textContent=Math.round(rightL*100);
+}
 
-  function siphonLoop() {
-    resizeCanvas();
-    updateSiphonPhysics();
-    drawSiphon();
-    animId = requestAnimationFrame(siphonLoop);
-  }
+function loop(){resize();physics();draw();rafId=requestAnimationFrame(loop)}
 
-  function toggleSiphon() {
-    siphonRunning = !siphonRunning;
-    const btn = document.getElementById('siphon-btn-txt');
-    if (siphonRunning) {
-      btn.textContent = lang==='ar'?'⏸ إيقاف':'⏸ Pause';
-    } else {
-      btn.textContent = lang==='ar'?'▶ تشغيل السيفون':'▶ Start Siphon';
-    }
-  }
+function toggleSiphon(){
+  running=!running;
+  document.getElementById('si-btxt').textContent=running?(lang==='ar'?'⏸ إيقاف':'⏸ Pause'):t('si-btxt');
+}
+function resetSiphon(){
+  running=false;leftL=1;rightL=0;wickP=0;wickDone=false;xfer=0;
+  ['sv1','sv2','sv3'].forEach((id,i)=>document.getElementById(id).textContent=i===0?'100':'0');
+  document.getElementById('si-btxt').textContent=t('si-btxt');
+}
 
-  function resetSiphon() {
-    siphonRunning = false;
-    leftLevel = 1.0; rightLevel = 0.0; wickProgress = 0; wickFull = false; totalTransferred = 0;
-    document.getElementById('siphon-btn-txt').textContent = lang==='ar'?'▶ تشغيل السيفون':'▶ Start Siphon';
-    document.getElementById('sv-left').textContent = '100';
-    document.getElementById('sv-right').textContent = '0';
-    document.getElementById('sv-transfer').textContent = '0';
-  }
+window.addEventListener('load',()=>{resize();loop()});
+window.addEventListener('resize',resize);
 
-  // Start canvas loop
-  window.addEventListener('load', () => { resizeCanvas(); siphonLoop(); });
-  window.addEventListener('resize', resizeCanvas);
+// ══ FOOD DATA ══
+const FOOD=[
+  {cat:0,items:[
+    {n:{en:'Chicken Biryani',ar:'برياني دجاج'},e:'🍛',w:2000},
+    {n:{en:'Meat Biryani',ar:'برياني لحم'},e:'🍖',w:3000},
+    {n:{en:'Chicken Qabuli',ar:'قبولي دجاج'},e:'🍗',w:1800},
+    {n:{en:'Meat Qabuli',ar:'قبولي لحم'},e:'🥩',w:2700},
+    {n:{en:'Chicken Mandi',ar:'مندي دجاج'},e:'🍗',w:1900},
+    {n:{en:'Meat Mandi',ar:'مندي لحم'},e:'🍖',w:2800},
+    {n:{en:'Vegetable Stew',ar:'مرق خضار'},e:'🥘',w:1300},
+    {n:{en:'Fish Curry',ar:'صالونة سمك'},e:'🐟',w:1700},
+    {n:{en:'Lentil Soup',ar:'شوربة عدس'},e:'🥣',w:500},
+    {n:{en:'Rice & Yogurt',ar:'عيش ولبن'},e:'🍚',w:1200}
+  ]},
+  {cat:1,items:[
+    {n:{en:'Beef Burger',ar:'برجر لحم'},e:'🍔',w:2800},
+    {n:{en:'Chicken Burger',ar:'برجر دجاج'},e:'🍔',w:1200},
+    {n:{en:'Pizza',ar:'بيتزا'},e:'🍕',w:1500},
+    {n:{en:'Fried Chicken',ar:'دجاج بروستد'},e:'🍗',w:1000},
+    {n:{en:'Chicken Shawarma',ar:'شاورما دجاج'},e:'🌯',w:600},
+    {n:{en:'Meat Shawarma',ar:'شاورما لحم'},e:'🌮',w:900},
+    {n:{en:'Nuggets',ar:'ناجت'},e:'🍗',w:800},
+    {n:{en:'French Fries',ar:'بطاطس'},e:'🍟',w:200},
+    {n:{en:'Hot Dog',ar:'هوت دوغ'},e:'🌭',w:600},
+    {n:{en:'Cheese Sandwich',ar:'سندويتش جبن'},e:'🥪',w:400}
+  ]},
+  {cat:2,items:[
+    {n:{en:'Dates (3)',ar:'تمر (3)'},e:'🌴',w:150},
+    {n:{en:'Soup',ar:'شوربة'},e:'🥣',w:400},
+    {n:{en:'Cheese Samosa',ar:'سمبوسة جبن'},e:'🥟',w:300},
+    {n:{en:'Meat Samosa',ar:'سمبوسة لحم'},e:'🥟',w:450},
+    {n:{en:'Fattoush',ar:'فتوش'},e:'🥗',w:200},
+    {n:{en:'Harees',ar:'هريس'},e:'🍲',w:2200},
+    {n:{en:'Qatayef',ar:'قطايف'},e:'🥞',w:600},
+    {n:{en:'Meat Fattah',ar:'فتة لحم'},e:'🍛',w:1800},
+    {n:{en:'Yogurt Drink',ar:'لبن'},e:'🥛',w:250}
+  ]},
+  {cat:3,items:[
+    {n:{en:'Lamb Skewers',ar:'مشاكيك غنم'},e:'🍢',w:800},
+    {n:{en:'Beef Skewers',ar:'مشاكيك لحم'},e:'🍢',w:1000},
+    {n:{en:'Chicken Skewers',ar:'مشاكيك دجاج'},e:'🍢',w:650},
+    {n:{en:'Grilled Meat',ar:'شواء لحم'},e:'🍖',w:2000},
+    {n:{en:'Grilled Chicken',ar:'شواء دجاج'},e:'🍗',w:1200},
+    {n:{en:'Meat Kebab',ar:'كباب'},e:'🥙',w:1500},
+    {n:{en:'Grilled Fish',ar:'سمك مشوي'},e:'🐟',w:800}
+  ]},
+  {cat:4,items:[
+    {n:{en:'Luqaimat',ar:'لقيمات'},e:'🍩',w:250},
+    {n:{en:'Kunafa',ar:'كنافة'},e:'🍰',w:700},
+    {n:{en:'Chocolate',ar:'شوكولاتة'},e:'🍫',w:2400},
+    {n:{en:'Ice Cream',ar:'آيسكريم'},e:'🍦',w:300},
+    {n:{en:'Chips',ar:'تشيبس'},e:'🥔',w:180},
+    {n:{en:'Popcorn',ar:'بوبكورن'},e:'🍿',w:150},
+    {n:{en:'Cheesecake',ar:'تشيز كيك'},e:'🍰',w:900},
+    {n:{en:'Cookies',ar:'بسكويت'},e:'🍪',w:200},
+    {n:{en:'Khabisa',ar:'خبيصة'},e:'🥣',w:600},
+    {n:{en:'Nuts',ar:'مكسرات'},e:'🥜',w:900}
+  ]},
+  {cat:5,items:[
+    {n:{en:'Coffee',ar:'قهوة'},e:'☕',w:130},
+    {n:{en:'Arabic Coffee',ar:'قهوة عربية'},e:'☕',w:140},
+    {n:{en:'Tea',ar:'شاي'},e:'🍵',w:30},
+    {n:{en:'Fresh Juice',ar:'عصير'},e:'🥤',w:300},
+    {n:{en:'Soda',ar:'مشروب غازي'},e:'🥤',w:124},
+    {n:{en:'Milkshake',ar:'ميلك شيك'},e:'🥛',w:500},
+    {n:{en:'Bottled Water',ar:'ماء معبأ'},e:'💧',w:3},
+    {n:{en:'Hot Chocolate',ar:'شوكولاتة ساخنة'},e:'☕',w:400}
+  ]}
+];
 
-  // ══════════════════════════════════════════════════════
-  //  WATER FOOTPRINT QUIZ
-  // ══════════════════════════════════════════════════════
-  const foodData = [
-    { cat: 0, items: [
-      {name:{en:'Chicken Biryani',ar:'برياني دجاج'}, emoji:'🍛', water:2000},
-      {name:{en:'Meat Biryani',ar:'برياني لحم'}, emoji:'🍖', water:3000},
-      {name:{en:'Chicken Qabuli',ar:'قبولي دجاج'}, emoji:'🍗', water:1800},
-      {name:{en:'Meat Qabuli',ar:'قبولي لحم'}, emoji:'🥩', water:2700},
-      {name:{en:'Chicken Mandi',ar:'مندي دجاج'}, emoji:'🍗', water:1900},
-      {name:{en:'Meat Mandi',ar:'مندي لحم'}, emoji:'🍖', water:2800},
-      {name:{en:'Vegetable Stew',ar:'مرق خضار'}, emoji:'🥘', water:1300},
-      {name:{en:'Fish Curry',ar:'صالونة سمك'}, emoji:'🐟', water:1700},
-      {name:{en:'Lentil Soup',ar:'شوربة عدس'}, emoji:'🥣', water:500},
-      {name:{en:'Rice & Yogurt',ar:'عيش ولبن'}, emoji:'🍚', water:1200}
-    ]},
-    { cat: 1, items: [
-      {name:{en:'Beef Burger',ar:'برجر لحم'}, emoji:'🍔', water:2800},
-      {name:{en:'Chicken Burger',ar:'برجر دجاج'}, emoji:'🍔', water:1200},
-      {name:{en:'Pizza',ar:'بيتزا'}, emoji:'🍕', water:1500},
-      {name:{en:'Fried Chicken',ar:'دجاج بروستد'}, emoji:'🍗', water:1000},
-      {name:{en:'Chicken Shawarma',ar:'شاورما دجاج'}, emoji:'🌯', water:600},
-      {name:{en:'Meat Shawarma',ar:'شاورما لحم'}, emoji:'🌮', water:900},
-      {name:{en:'Chicken Nuggets',ar:'ناجت دجاج'}, emoji:'🍗', water:800},
-      {name:{en:'French Fries',ar:'بطاطس مقلية'}, emoji:'🍟', water:200},
-      {name:{en:'Hot Dog',ar:'هوت دوغ'}, emoji:'🌭', water:600},
-      {name:{en:'Cheese Sandwich',ar:'سندويتش جبن'}, emoji:'🥪', water:400}
-    ]},
-    { cat: 2, items: [
-      {name:{en:'Dates (3 pcs)',ar:'تمر (3 حبات)'}, emoji:'🌴', water:150},
-      {name:{en:'Soup',ar:'شوربة'}, emoji:'🥣', water:400},
-      {name:{en:'Cheese Samosa',ar:'سمبوسة جبن'}, emoji:'🥟', water:300},
-      {name:{en:'Meat Samosa',ar:'سمبوسة لحم'}, emoji:'🥟', water:450},
-      {name:{en:'Fattoush Salad',ar:'فتوش'}, emoji:'🥗', water:200},
-      {name:{en:'Harees',ar:'هريس'}, emoji:'🍲', water:2200},
-      {name:{en:'Qatayef',ar:'قطايف'}, emoji:'🥞', water:600},
-      {name:{en:'Meat Fattah',ar:'فتة لحم'}, emoji:'🍛', water:1800},
-      {name:{en:'Yogurt Drink',ar:'لبن/روب'}, emoji:'🥛', water:250}
-    ]},
-    { cat: 3, items: [
-      {name:{en:'Lamb Skewers',ar:'مشاكيك غنم'}, emoji:'🍢', water:800},
-      {name:{en:'Beef Skewers',ar:'مشاكيك لحم'}, emoji:'🍢', water:1000},
-      {name:{en:'Chicken Skewers',ar:'مشاكيك دجاج'}, emoji:'🍢', water:650},
-      {name:{en:'Grilled Meat',ar:'شواء لحم'}, emoji:'🍖', water:2000},
-      {name:{en:'Grilled Chicken',ar:'شواء دجاج'}, emoji:'🍗', water:1200},
-      {name:{en:'Meat Kebab',ar:'كباب لحم'}, emoji:'🥙', water:1500},
-      {name:{en:'Grilled Fish',ar:'سمك مشوي'}, emoji:'🐟', water:800}
-    ]},
-    { cat: 4, items: [
-      {name:{en:'Luqaimat',ar:'لقيمات'}, emoji:'🍩', water:250},
-      {name:{en:'Kunafa',ar:'كنافة'}, emoji:'🍰', water:700},
-      {name:{en:'Chocolate Bar',ar:'شوكولاتة'}, emoji:'🍫', water:2400},
-      {name:{en:'Ice Cream',ar:'آيسكريم'}, emoji:'🍦', water:300},
-      {name:{en:'Chips',ar:'تشيبس'}, emoji:'🥔', water:180},
-      {name:{en:'Popcorn',ar:'بوب كورن'}, emoji:'🍿', water:150},
-      {name:{en:'Cheesecake',ar:'تشيز كيك'}, emoji:'🍰', water:900},
-      {name:{en:'Cookies',ar:'بسكويت'}, emoji:'🍪', water:200},
-      {name:{en:'Khabisa',ar:'خبيصة'}, emoji:'🥣', water:600},
-      {name:{en:'Nuts',ar:'مكسرات'}, emoji:'🥜', water:900}
-    ]},
-    { cat: 5, items: [
-      {name:{en:'Coffee',ar:'قهوة'}, emoji:'☕', water:130},
-      {name:{en:'Arabic Coffee',ar:'قهوة عربية'}, emoji:'☕', water:140},
-      {name:{en:'Tea',ar:'شاي'}, emoji:'🍵', water:30},
-      {name:{en:'Fresh Juice',ar:'عصير طازج'}, emoji:'🥤', water:300},
-      {name:{en:'Soda',ar:'مشروب غازي'}, emoji:'🥤', water:124},
-      {name:{en:'Milkshake',ar:'ميلك شيك'}, emoji:'🥛', water:500},
-      {name:{en:'Bottled Water',ar:'ماء معبأ'}, emoji:'💧', water:3},
-      {name:{en:'Hot Chocolate',ar:'شوكولاتة ساخنة'}, emoji:'☕', water:400}
-    ]}
-  ];
+let catIdx=0,sel={},quizActive=false,resShown=false;
 
-  let quizActive = false;
-  let resultsShown = false;
-  let currentCat = 0;
-  let selections = {}; // catIdx -> {itemIdx: qty}
+function startQ(){
+  quizActive=true;catIdx=0;sel={};
+  FOOD.forEach((_,i)=>sel[i]={});
+  document.getElementById('fp-w').style.display='none';
+  document.getElementById('fp-q').style.display='block';
+  renderQ();
+}
 
-  function startQuiz() {
-    quizActive = true;
-    currentCat = 0;
-    selections = {};
-    foodData.forEach((_,i) => selections[i] = {});
-    document.getElementById('fp-welcome').style.display = 'none';
-    document.getElementById('fp-quiz').style.display = 'block';
-    renderQuizScreen();
-  }
-
-  function renderQuizScreen() {
-    const cat = foodData[currentCat];
-    const catNames = t('catNames');
-    const catFacts = t('catFacts');
-    const prog = ((currentCat) / foodData.length) * 100;
-    document.getElementById('quizProgress').style.width = prog + '%';
-
-    const html2 = `
-      <div class="category-block">
-        <div class="category-header">
-          <div class="category-icon-wrap">${catNames[currentCat].split(' ')[0]}</div>
-          <h3>${catNames[currentCat].slice(catNames[currentCat].indexOf(' ')+1)}</h3>
-        </div>
-        <div class="category-fact">${catFacts[currentCat]}</div>
-        <div class="food-grid" id="foodGrid">
-          ${cat.items.map((item, idx) => {
-            const qty = selections[currentCat][idx] || 0;
-            const sel = qty > 0;
-            return `<div class="food-item${sel?' selected':''}" id="fi-${idx}" onclick="toggleFood(${idx})">
-              <div class="emoji">${item.emoji}</div>
-              <div class="name">${item.name[lang]}</div>
-              <div class="water-cost">${item.water.toLocaleString()} L</div>
-              <div class="qty-ctrl">
-                <button class="qty-btn" onclick="changeQty(event,${idx},-1)">−</button>
-                <span class="qty-val" id="qty-${idx}">${qty}</span>
-                <button class="qty-btn" onclick="changeQty(event,${idx},1)">+</button>
-              </div>
-            </div>`;
-          }).join('')}
-        </div>
+function renderQ(){
+  const cn=t('catN');const cf=t('catF');
+  const prog=(catIdx/FOOD.length)*100;
+  document.getElementById('fpBar').style.width=prog+'%';
+  const cat=FOOD[catIdx];
+  const icon=cn[catIdx].split(' ')[0];
+  const name=cn[catIdx].slice(cn[catIdx].indexOf(' ')+1);
+  const items=cat.items.map((it,i)=>{
+    const q=sel[catIdx][i]||0;const s=q>0;
+    return`<div class="fi${s?' sel':''}" id="fi${i}" onclick="pickFood(${i})">
+      <div class="em">${it.e}</div>
+      <div class="nm">${it.n[lang]}</div>
+      <div class="wt">${it.w.toLocaleString()} L</div>
+      <div class="qc">
+        <button class="qb" onclick="chQty(event,${i},-1)">−</button>
+        <span class="qv">${q}</span>
+        <button class="qb" onclick="chQty(event,${i},1)">+</button>
       </div>
-      <div class="quiz-nav">
-        ${currentCat > 0 ? `<button class="ctrl-btn secondary" onclick="prevCat()"><span>${t('backBtn')}</span></button>` : ''}
-        ${currentCat < foodData.length - 1
-          ? `<button class="ctrl-btn primary" onclick="nextCat()"><span>${t('nextBtn')}</span></button>`
-          : `<button class="ctrl-btn success" onclick="showResults()"><span>${t('calcBtn')}</span></button>`
-        }
+    </div>`;
+  }).join('');
+  const back=catIdx>0?`<button class="btn btn-ghost q-nav-btn" onclick="prevC()">${t('backBtn')}</button>`:'';
+  const fwd=catIdx<FOOD.length-1
+    ?`<button class="btn btn-blue q-nav-btn" onclick="nextC()">${t('nextBtn')}</button>`
+    :`<button class="btn btn-green q-nav-btn" onclick="showRes()">${t('calcBtn')}</button>`;
+
+  document.getElementById('fp-q').innerHTML=`
+    <div class="q-card">
+      <div class="q-catbar"><div class="q-caticon">${icon}</div><h3>${name}</h3></div>
+      <div class="q-fact">${cf[catIdx]}</div>
+      <div class="food-grid">${items}</div>
+    </div>
+    <div class="q-nav" style="margin-top:4px">${back}${fwd}</div>`;
+}
+
+function pickFood(i){
+  if(!sel[catIdx][i])sel[catIdx][i]=1;else delete sel[catIdx][i];
+  renderQ();
+}
+function chQty(e,i,d){
+  e.stopPropagation();
+  sel[catIdx][i]=Math.max(1,(sel[catIdx][i]||1)+d);
+  renderQ();
+}
+function nextC(){if(catIdx<FOOD.length-1){catIdx++;renderQ()}}
+function prevC(){if(catIdx>0){catIdx--;renderQ()}}
+
+function showRes(){
+  quizActive=false;resShown=true;
+  document.getElementById('fp-q').style.display='none';
+  document.getElementById('fp-r').style.display='block';
+  document.getElementById('fpBar').style.width='100%';
+  renderResult();
+}
+
+function renderResult(){
+  let total=0;
+  const catTotals=FOOD.map((_,ci)=>{
+    let s=0;Object.entries(sel[ci]||{}).forEach(([i,q])=>s+=FOOD[ci].items[i].w*q);
+    total+=s;return s;
+  });
+  const avg=3800,pct=Math.min(150,Math.round(total/avg*100));
+  const pools=Math.max(1,Math.round(total*365/2500000));
+  const showers=Math.max(1,Math.round(total/65));
+  const days=Math.max(1,Math.round(total/2));
+  const badge=t('rbadge')(total);
+  const msg=t('rmsg')(total);
+  const tips=t('tips');
+  const cn=t('catN');
+
+  const badgeColor=total<1000?'#06a77d':total<2000?'#0077b6':total<3800?'#d68910':'#c0392b';
+  const badgeBg=total<1000?'rgba(6,167,125,.12)':total<2000?'rgba(0,119,182,.12)':total<3800?'rgba(214,136,16,.12)':'rgba(192,57,43,.12)';
+
+  const bkItems=catTotals.map((v,i)=>v>0?`<div class="bk-item"><div class="bk-cat">${cn[i].split(' ').slice(1).join(' ')}</div><div class="bk-L">${v.toLocaleString()} L</div></div>`:'').join('');
+
+  document.getElementById('fp-r').innerHTML=`
+    <div class="r-card">
+      <span class="r-drop">💧</span>
+      <div class="r-num">${total.toLocaleString()}</div>
+      <div class="r-unit">${t('rs')}</div>
+      <div class="r-badge" style="background:${badgeBg};color:${badgeColor}">${badge}</div>
+      <div class="r-msg">${msg}</div>
+
+      <div class="r-bar-lbl">${t('rc')}</div>
+      <div class="r-bar"><div class="r-bar-fill" id="rBarFill" style="width:0%"><span>${pct}%</span></div></div>
+
+      <div class="impact-grid">
+        <div class="i-tile"><div class="ico">🏊</div><div class="val">${pools}</div><div class="desc">${t('pools')(pools).replace(/= \d+ /,'')}</div></div>
+        <div class="i-tile"><div class="ico">🚿</div><div class="val">${showers}</div><div class="desc">${t('showers')(showers).replace(/= \d+ /,'')}</div></div>
+        <div class="i-tile"><div class="ico">💧</div><div class="val">${days}</div><div class="desc">${t('days')(days).replace(/= \d+ /,'')}</div></div>
       </div>
-    `;
-    document.getElementById('fp-quiz').innerHTML = html2;
-  }
 
-  function toggleFood(idx) {
-    if (!selections[currentCat][idx]) {
-      selections[currentCat][idx] = 1;
-    } else {
-      delete selections[currentCat][idx];
-    }
-    renderQuizScreen();
-  }
+      ${bkItems?`<div class="bk-grid">${bkItems}</div>`:''}
 
-  function changeQty(e, idx, delta) {
-    e.stopPropagation();
-    const cur = selections[currentCat][idx] || 1;
-    const next = Math.max(1, cur + delta);
-    selections[currentCat][idx] = next;
-    renderQuizScreen();
-  }
+      <div style="font-size:15px;font-weight:800;color:var(--ink);margin-bottom:12px;text-align:left">${t('tip-title')}</div>
+      <div class="tips-row">${tips.map(([ico,txt])=>`<div class="tip"><span class="tip-ico">${ico}</span><span class="tip-txt">${txt}</span></div>`).join('')}</div>
 
-  function nextCat() {
-    if (currentCat < foodData.length - 1) { currentCat++; renderQuizScreen(); }
-  }
-  function prevCat() {
-    if (currentCat > 0) { currentCat--; renderQuizScreen(); }
-  }
-
-  function showResults() {
-    quizActive = false;
-    resultsShown = true;
-    document.getElementById('fp-quiz').style.display = 'none';
-    document.getElementById('fp-results').style.display = 'block';
-    document.getElementById('quizProgress').style.width = '100%';
-    renderResults();
-  }
-
-  function renderResults() {
-    // Calculate totals per category
-    let total = 0;
-    const catTotals = foodData.map((catData, ci) => {
-      let catTotal = 0;
-      Object.entries(selections[ci] || {}).forEach(([idx, qty]) => {
-        catTotal += catData.items[idx].water * qty;
-      });
-      total += catTotal;
-      return catTotal;
-    });
-
-    const avg = 3800;
-    const percent = Math.min(150, Math.round(total/avg*100));
-    const annualPools = Math.round(total * 365 / 2500000);
-    const catNames = t('catNames');
-    const badge = t('res-badge')(total, avg);
-    const msg = t('res-msg')(total);
-    const tipsArr = t('tips');
-
-    const html3 = `
-      <div class="result-screen">
-        <span class="result-drop">💧</span>
-        <h2 class="result-title">${t('res-title')}</h2>
-        <div class="result-number">${total.toLocaleString()}</div>
-        <p class="result-sub">${t('res-sub')}</p>
-        <div style="display:inline-block;background:rgba(6,167,125,0.12);border:1px solid var(--color-footprint);border-radius:var(--radius-full);padding:var(--space-1) var(--space-4);font-size:var(--text-sm);font-weight:700;color:var(--color-footprint);margin-bottom:var(--space-5)">${badge}</div>
-        <p style="color:var(--color-text-muted);font-size:var(--text-sm);margin-bottom:var(--space-5)">${msg}</p>
-
-        <div class="result-bar-wrap">
-          <div class="result-bar-label">${t('res-compare')}</div>
-          <div class="result-bar">
-            <div class="result-bar-fill" id="resBarFill" style="width:0%">
-              <span>${percent}%</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="breakdown-grid">
-          ${catTotals.map((ct, i) => ct > 0 ? `
-            <div class="breakdown-item">
-              <div class="breakdown-cat">${catNames[i].split(' ').slice(1).join(' ')}</div>
-              <div class="breakdown-liters">${ct.toLocaleString()} L</div>
-            </div>` : '').join('')}
-        </div>
-
-        <div class="science-box">
-          <h4>🌍 <span>${lang==='ar'?'أثرك البيئي':'Environmental Impact'}</span></h4>
-          <p>${t('annual-pools')(annualPools || 0)}</p>
-        </div>
-
-        <div class="tips-box">
-          <h4>${t('tips-title')}</h4>
-          <ul>${tipsArr.map(tip => `<li>${tip}</li>`).join('')}</ul>
-        </div>
-
-        <div style="display:flex;gap:var(--space-3);flex-wrap:wrap;justify-content:center">
-          <button class="ctrl-btn primary" onclick="restartQuiz()">${t('restart-btn')}</button>
-          <button class="ctrl-btn secondary" onclick="showTab('siphon')">${t('go-siphon')}</button>
-        </div>
+      <div class="r-btns">
+        <button class="btn btn-blue" onclick="restartQ()">${t('rstrt')}</button>
+        <button class="btn btn-ghost" onclick="goTab('siphon')">${t('r-go')}</button>
       </div>
-    `;
-    document.getElementById('fp-results').innerHTML = html3;
+    </div>`;
 
-    // Animate bar
-    setTimeout(() => {
-      const fill = document.getElementById('resBarFill');
-      if (fill) fill.style.width = Math.min(percent, 100) + '%';
-    }, 100);
-  }
+  setTimeout(()=>{const f=document.getElementById('rBarFill');if(f)f.style.width=Math.min(pct,100)+'%'},100);
+}
 
-  function restartQuiz() {
-    resultsShown = false;
-    document.getElementById('fp-results').style.display = 'none';
-    document.getElementById('fp-welcome').style.display = 'block';
-    document.getElementById('quizProgress').style.width = '0%';
-  }
-
-  </script>
+function restartQ(){
+  resShown=false;
+  document.getElementById('fp-r').style.display='none';
+  document.getElementById('fp-w').style.display='block';
+  document.getElementById('fpBar').style.width='0%';
+}
+</script>
 </body>
 </html>
