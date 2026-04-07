@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light" dir="ltr">
+<html lang="ar" data-theme="light" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -391,7 +391,7 @@ input[type=range]{accent-color:var(--blue);width:80px}
 
 <script>
 // ══ LANG ══
-let lang='en';
+let lang='ar';
 const TR={
   en:{
     wwd:'🌍 World Water Day 2026 — Where Water Flows, Equality Grows 💧',
@@ -675,7 +675,7 @@ function resetSiphon(){
   document.getElementById('si-btxt').textContent=t('si-btxt');
 }
 
-window.addEventListener('load',()=>{resize();loop()});
+window.addEventListener('load',()=>{resize();loop();applyLang();});
 window.addEventListener('resize',resize);
 
 // ══ FOOD DATA ══
